@@ -1,0 +1,17 @@
+.ul-social-links{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 40%;
+  padding: var(--qgd-padding-s);
+}
+
+.li-social{
+  margin: 0 10px;
+}
+
+.a-social
+.img-social{
+  width: 28px;
+  height: 28px;
+}

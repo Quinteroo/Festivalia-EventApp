@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  scroll-behavior: smooth;
+  text-align: center;
+}
+
+
+:root {
+
+  /* qgd = quintero gordo developer */
+
+  /* COLORS */  
+  --qgd-color-05: #fdfcfc;
+  --qgd-color-10: #5a5a5a;
+  --qgd-color-15:#353535;
+  --qgd-color-25: #ffe343;
+  --qgd-color-50: #ffc343;
+
+
+  /* BACKGROUNDS */
+  --qgd-primary-background:var(--qgd-color-15);
+
+
+  /* PADDINGS */
+  --qgd-padding-xs: 0.2em;
+  --qgd-padding-s: 1em;
+  --qgd-padding-m: 2em;
+  --qgd-padding-l: 3em;
+  --qgd-padding-xl: 3.5em;
+  --qgd-padding-xxl: 4em;
+  --qgd-padding-button-xs: 0.4em;
+  --qgd-padding-button-s: 0.4em 1.5em 0.4em 1.5em;
+  --qgd-padding-button-m: 0.5em 1.6em 0.5em 1.6em;
+
+  /* MARGINS */
+  --qgd-margins-xs: 0.2em;
+  --qgd-margins-s: 1em;
+  --qgd-margins-m: 2em;
+  --qgd-margins-l: 3em;
+  --qgd-margins-xl: 4.3em;
+
+  /* BORDER RADIUS */
+  --qgd-border-radius-1: 5px;
+  --qgd-border-radius-2: 100%
+
+}
+
+
+/* SHADOW */
+.shadow {
+box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.hover-color:hover{
+  color:var(--qgd-color-25);
+}
+
+
+/* BUTTONS */
+.primary-button{
+  padding: var(--qgd-padding-xs);
+  border: 1px solid  var(--qgd-color-50);
+  background-color: var(--qgd-color-50);
+  color:var(--qgd-color-05);
+  border-radius:var(--qgd-border-radius-1);
+  cursor:pointer;
+  transition: 0.7;
+  margin: 10px;
+}
+
+.secondary-button{
+  padding: var(--qgd-padding-xs);
+  border: 1px solid  var(--qgd-color-50);
+  background-color: transparent;
+  color: var(--qgd-color-50);
+  border-radius:var(--qgd-border-radius-1);
+  cursor:pointer;
+  transition: 0.7;
+  margin: 10px;
+
+}
+
+.tertiary-button{
+  padding: var(--qgd-padding-xs);
+  border: none;
+  background-color: transparent;
+  color: var(--qgd-color-50);
+  border-radius:var(--qgd-border-radius-1);
+  text-decoration: underline;
+  cursor:pointer;
+  transition: 0.7;
+
+}
+
+.hover:hover {
+  scale: 1.02;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.tertiary-button:hover{
+  scale: 1.02;
+  color: var(--qgd-color-25);
+}
+
+
+
+/* TEXT */
+.primary-title{
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--qgd-color-15);
+}
+
+.secondary-title{
+  font-weight: 900;
+  text-transform: capitalize;
+  color: var(--qgd-color-15);
+
+}
+
+.subtitle{
+  font-weight: 600;
+  color: var(--qgd-color-15);
+
+}
+
+.text{
+  font-weight: 300;
+  color: var(--qgd-color-15);
+
+}
+
+
+/* LINKS */
+.link{
+  font-weight: 300;
+  color:var(--qgd-color-50)
+}
+
+.link:hover{
+  color:var(--qgd-color-25)
+}
+
+
+
+/* AVATAR */
+.primary-avatar {
+  width: 300px;
+  height: auto;
+  border: none;
+  border-radius: 100%;
+  margin: 20px;
+  display: block;
+  object-fit: cover;
+  opacity: 1;
+  filter: brightness(100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.7s ;
+}
+
+.primary-avatar:hover {
+  border: 2px solid var(--qgd-color-15);
+}
+
+
+.secondary-avatar {
+  width: 50px;
+  height: auto;
+  border: none;
+  border-radius: 100%;
+  margin: 20px;
+  display: block;
+  object-fit: cover;
+  opacity: 1;
+  filter: brightness(100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.7s ;
+}
+
+.secondary-avatar:hover {
+  transform: scale(1.01);
+  border: 2px solid var(--qgd-color-15);
+}

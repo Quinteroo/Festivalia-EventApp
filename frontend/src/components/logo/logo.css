@@ -1,0 +1,51 @@
+.logo-container {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.name-div {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.brand-name {
+  width: 100%;
+  font-weight: 600;
+  font-size: 2rem;
+  text-align: end;
+}
+
+.img-div {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.logo-image {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 575px){
+  .logo-container{
+    width:70%
+  }
+
+  .name-div{
+    width: 50%;
+  }
+
+  .img-div{
+    width: 50%;
+  }
+}

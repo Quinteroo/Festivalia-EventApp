@@ -1,0 +1,11 @@
+.div-buttons{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-login, .button-join{
+  margin: 20px;
+  padding: 20px;
+}
