@@ -7,12 +7,14 @@ export const slogan = () => {
   divSlogan.className = "div-slogan"
 
   const slogan = document.createElement("p")
-  slogan.className = "slogan"
+  slogan.classList.add("slogan")
+  slogan.classList.add("secondary-title")
   slogan.innerHTML = "Achieve happiness<br>through emotion";
 
   const subSlogan = document.createElement("p")
-  subSlogan.className = "subSlogan"
-  subSlogan.innerHTML = "Do better your life finding the<br>best music events around you";
+  subSlogan.classList.add("text")
+  subSlogan.classList.add("subSlogan")
+  subSlogan.innerHTML = "Improve your life by finding the<br>best music events around you";
 
 
   divSlogan.append(slogan)

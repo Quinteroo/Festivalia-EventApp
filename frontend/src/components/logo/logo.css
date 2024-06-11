@@ -20,13 +20,14 @@
   font-weight: 600;
   font-size: 2rem;
   text-align: end;
+  color: var(--qgd-color-05);
 }
 
 .img-div {
   width: 30%;
   height: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 }
 

@@ -19,8 +19,9 @@
 
   /* COLORS */  
   --qgd-color-05: #fdfcfc;
-  --qgd-color-10: #5a5a5a;
-  --qgd-color-15:#353535;
+  --qgd-color-10: #16171b;
+  --qgd-color-15:#101114;
+  --qgd-color-20:#0a0a0a;
   --qgd-color-25: #ffe343;
   --qgd-color-50: #ffc343;
 
@@ -116,25 +117,25 @@ box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 .primary-title{
   font-weight: 900;
   text-transform: uppercase;
-  color: var(--qgd-color-15);
+  color: var(--qgd-color-05);
 }
 
 .secondary-title{
   font-weight: 900;
   text-transform: capitalize;
-  color: var(--qgd-color-15);
+  color: var(--qgd-color-05);
 
 }
 
 .subtitle{
   font-weight: 600;
-  color: var(--qgd-color-15);
+  color: var(--qgd-color-05);
 
 }
 
 .text{
   font-weight: 300;
-  color: var(--qgd-color-15);
+  color: var(--qgd-color-05);
 
 }
 

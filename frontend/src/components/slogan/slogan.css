@@ -8,9 +8,24 @@
 
 .slogan{
   width: 100%;
-  font-size: 5rem;
+  font-size: 7rem;
+  color: var(--qgd-color-05);
 }
 
 .subSlogan{
   width: 100%;
+}
+
+main{
+  background-image: url('../../assets/images/background-festival-LP.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+@media (max-width: 575px){
+  .slogan{
+    font-size: 4rem;
+  }
 }

@@ -11,7 +11,8 @@ export const logo = () => {
 
   const brandName = document.createElement("h1")
   brandName.textContent = "Festivalia"
-  brandName.className = "brand-name"
+  brandName.classList.add("brand-name")
+  brandName.classList.add("primary-title")
   divName.append(brandName)
 
   const divImg = document.createElement("div")
