@@ -1,3 +1,29 @@
-/* main{
-  background-image: none;
-} */
+form{
+  width: 500px;
+  height: 350px;
+  background-color: var(--qgd-color-15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 15px;
+  padding: 2rem;
+}
+
+form > input {
+  all: unset;
+  width: 100%;
+  text-align: start;
+  background-color: var(--qgd-color-20);
+  color: var(--qgd-color-5);
+  
+}
+
+form > input:hover {
+  background-color: var(--qgd-color-23);
+  
+}
+
+.input-file{
+
+}

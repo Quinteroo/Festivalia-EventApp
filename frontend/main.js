@@ -8,18 +8,19 @@ import { intro } from "./src/components/intro/intro.js"
 
 
 
-const landingPage = () => {
+export const landingPage = () => {
   const divApp = document.querySelector("#app")
+  divApp.innerHTML = "";
 
   headerLP(divApp)
   storeFront(divApp)
   footer(divApp)
 
 
-  logo()
+  logo(document.querySelector("header"))
   intro()
 
 
 }
 
-landingPage()
+document.addEventListener("DOMContentLoaded", landingPage);

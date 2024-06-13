@@ -1,7 +1,6 @@
 import './logo.css'
 
-export const logo = () => {
-  const header = document.querySelector("header")
+export const logo = (elementoPadre) => {
 
   const logoContainer = document.createElement("div")
   logoContainer.className = "logo-container"
@@ -29,5 +28,5 @@ export const logo = () => {
   logoContainer.append(divName)
   logoContainer.append(divImg)
 
-  header.append(logoContainer)
+  elementoPadre.append(logoContainer)
 }
