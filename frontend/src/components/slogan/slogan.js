@@ -1,7 +1,6 @@
 import './slogan.css'
 
-export const slogan = () => {
-  const main = document.querySelector("main")
+export const slogan = (elementoPadre) => {
 
   const divSlogan = document.createElement("div")
   divSlogan.className = "div-slogan"
@@ -19,6 +18,6 @@ export const slogan = () => {
 
   divSlogan.append(slogan)
   divSlogan.append(subSlogan)
-  main.append(divSlogan)
+  elementoPadre.append(divSlogan)
 
 }

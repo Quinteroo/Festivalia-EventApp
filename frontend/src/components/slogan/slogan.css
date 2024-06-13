@@ -16,12 +16,6 @@
   width: 100%;
 }
 
-main{
-  background-image: url('../../assets/images/background-festival-LP.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 
 @media (max-width: 575px){

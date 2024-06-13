@@ -1,7 +1,7 @@
+import { register } from "../../../pages/register/register.js"
 import "./accessButton.css"
 
-export const accessButton = () => {
-  const main = document.querySelector("main")
+export const accessButton = (elementoPadre) => {
 
   const divButtons = document.createElement("div")
   divButtons.className = "div-buttons"
@@ -16,7 +16,9 @@ export const accessButton = () => {
   buttonJoin.classList.add("secondary-button")
   buttonJoin.classList.add("hover")
 
+  buttonJoin.addEventListener("click", register)
+
   divButtons.append(buttonLogIn)
   divButtons.append(buttonJoin)
-  main.append(divButtons)
+  elementoPadre.append(divButtons)
 }

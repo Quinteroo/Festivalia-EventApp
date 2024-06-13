@@ -1,7 +1,7 @@
 footer {
   width: 100%;
   height: auto;
-  background-color: black;
+  background-color: var(--qgd-color-10);
 }
 
 .div-social{
