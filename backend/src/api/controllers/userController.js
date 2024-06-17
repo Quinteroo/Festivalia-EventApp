@@ -20,20 +20,20 @@ const register = async (req, res, next) => {
   try {
     const { userName, email, password } = req.body;
 
-    if (!req.file || !userName || !email || !password) {
-      return res.status(400).json("❌ Los campos image, nombre, email y contraseña son obligatorios!");
+    if (!userName || !email || !password) {
+      return res.status(401).json("❌ Los campos nombre, email y contraseña son obligatorios!");
     }
 
     const regexPasword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/
     if (!regexPasword.test(password)) {
-      return res.status(400).json(`❌ minusc, mayusc, un numero, mínimo 6 caracteres, !"@#_- no están permitidos`);
+      return res.status(402).json("❌ minusc, mayusc, un numero, mínimo 6 caracteres, !@#_-. no están permitidos");
     }
 
     // Subir la imagen a Cloudinary
-    const result = await cloudinary.uploader.upload(req.file.path);
+    //const result = await cloudinary.uploader.upload(req.file.path);
 
     const newUser = new User({
-      avatar: result.secure_url,
+      // avatar: result.secure_url,
       userName,
       email,
       password,

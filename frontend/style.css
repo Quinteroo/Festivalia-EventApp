@@ -141,11 +141,18 @@ box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 
 }
 
+.subtext{
+  font-weight: 100;
+  color: var(--qgd-color-05);
+  font-size: smaller;
+}
+
 
 /* LINKS */
 .link{
   font-weight: 300;
-  color:var(--qgd-color-50)
+  color:var(--qgd-color-50);
+  cursor:pointer;
 }
 
 .link:hover{
