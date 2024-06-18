@@ -55,13 +55,13 @@ const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(400).json("❌ No existe usuario");
+      return res.status(401).json("❌ No existe usuario");
     }
     if (bcrypt.compareSync(req.body.password, user.password)) {
       const token = generateSing(user._id);
       return res.status(200).json({ user, token });
     } else {
-      return res.status(400).json("❌ contraseña incorrecta");
+      return res.status(402).json("❌ contraseña incorrecta");
     }
   } catch (error) {
     console.log(error);

@@ -4,6 +4,7 @@ import { storeFront } from "../../components/storeFront/storeFront.js";
 import { footer } from "../../components/footer/footer.js";
 import { logo } from "../../components/logo/logo.js";
 import { landingPage } from "../../../main.js";
+import { login } from "../login/login.js";
 
 export const register = () => {
   const divApp = document.querySelector("#app");
@@ -101,6 +102,6 @@ const submit = async (userName, email, password, form) => {
   const resFinal = await res.json()
 
   console.log(resFinal);
-
+  login()
 
 }

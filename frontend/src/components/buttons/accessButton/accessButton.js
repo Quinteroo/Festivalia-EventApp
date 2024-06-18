@@ -1,4 +1,5 @@
 import { register } from "../../../pages/register/register.js"
+import { login } from "../../../pages/login/login.js"
 import "./accessButton.css"
 
 export const accessButton = (elementoPadre) => {
@@ -16,6 +17,7 @@ export const accessButton = (elementoPadre) => {
   buttonJoin.classList.add("secondary-button")
   buttonJoin.classList.add("hover")
 
+  buttonLogIn.addEventListener("click", login)
   buttonJoin.addEventListener("click", register)
 
   divButtons.append(buttonLogIn)
