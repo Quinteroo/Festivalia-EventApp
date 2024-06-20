@@ -6,6 +6,18 @@ const { generateSing, verifyJwt } = require("../../utils/jwt.js");
 const { createEventEmail } = require("../../emails/createEventEmail.js")
 const { newUserEmail } = require("../../emails/newUserEmail.js")
 
+const getUser = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+
+    const user = await User.findOne({ token });
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json("❌ Users not found");
+  }
+};
+
 const getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
@@ -29,11 +41,10 @@ const register = async (req, res, next) => {
       return res.status(402).json("❌ minusc, mayusc, un numero, mínimo 6 caracteres, !@#_-. no están permitidos");
     }
 
-    // Subir la imagen a Cloudinary
-    //const result = await cloudinary.uploader.upload(req.file.path);
+
 
     const newUser = new User({
-      // avatar: result.secure_url,
+      avatar,
       userName,
       email,
       password,
@@ -147,5 +158,5 @@ const putEvent = async (req, res, next) => {
   }
 };
 
-module.exports = { postEvent, putEvent, register, login, getUsers };
+module.exports = { getUser, postEvent, putEvent, register, login, getUsers };
 

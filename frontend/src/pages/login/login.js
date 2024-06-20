@@ -5,6 +5,8 @@ import { footer } from "../../components/footer/footer.js";
 import { logo } from "../../components/logo/logo.js";
 import { landingPage } from "../../../main.js";
 import { register } from '../register/register.js';
+import { home } from '../home/home.js';
+import { URL } from "../../utils/url.js"
 
 
 export const login = () => {
@@ -81,7 +83,7 @@ const submit = async (email, password, form) => {
     }
   }
 
-  const res = await fetch("http://localhost:4001/api/v1/user/login", opciones)
+  const res = await fetch(`${URL}/user/login`, opciones)
 
   const pError = document.createElement("p")
   pError.classList.add("error", "subtext")
@@ -101,10 +103,12 @@ const submit = async (email, password, form) => {
   }
 
 
-
   const resFinal = await res.json()
 
+  localStorage.setItem("loginToken", resFinal.token)
   console.log(resFinal);
+
+  home()
 
 
 }
