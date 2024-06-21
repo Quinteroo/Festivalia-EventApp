@@ -20,9 +20,8 @@ export const logo = (elementoPadre) => {
   const imgLogo = document.createElement("img")
   imgLogo.src = "./src/assets/images/logoFestivalia1.png"
   imgLogo.alt = "Festivalia Logo"
-
-  imgLogo.alt = "Festivalia Logo"
   imgLogo.className = "logo-image"
+
   divImg.append(imgLogo)
 
   logoContainer.append(divName)

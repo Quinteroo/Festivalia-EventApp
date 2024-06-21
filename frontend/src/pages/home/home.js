@@ -19,7 +19,6 @@ export const home = () => {
 
   logo(divLogo)
   const header = document.querySelector("header")
-  header.classList.add("header-color")
   header.append(divLogo)
 
   const divUser = document.createElement("div")

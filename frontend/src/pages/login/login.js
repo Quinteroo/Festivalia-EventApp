@@ -83,7 +83,7 @@ const submit = async (email, password, form) => {
     }
   }
 
-  const res = await fetch(`${URL}/user/login`, opciones)
+  const res = await fetch(`${URL}user/login`, opciones)
 
   const pError = document.createElement("p")
   pError.classList.add("error", "subtext")
