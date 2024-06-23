@@ -4,6 +4,7 @@ import { storeFront } from "../../components/storeFront/storeFront.js"
 import { footer } from "../../components/footer/footer.js"
 import { logo } from "../../components/logo/logo.js"
 import { avatar } from "../../components/avatar/avatar.js"
+import { logOutDiv } from "../../components/logOut/logOut.js"
 
 export const home = () => {
   const divApp = document.querySelector("#app")
@@ -24,6 +25,10 @@ export const home = () => {
   const divUser = document.createElement("div")
   divUser.classList.add("div-user")
   avatar(divUser)
+  logOutDiv(divUser)
+
+
+
   header.append(divUser)
 
 }

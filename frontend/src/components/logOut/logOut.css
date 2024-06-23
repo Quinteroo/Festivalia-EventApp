@@ -1,4 +1,4 @@
-.img-container{
+.log-out-div{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -7,7 +7,7 @@
   cursor:pointer;
 }
 
-.img-avatar{
+.img-log-out{
   width: 32px;
   height: 32px;
 }
