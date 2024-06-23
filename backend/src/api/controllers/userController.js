@@ -6,12 +6,15 @@ const { generateSing, verifyJwt } = require("../../utils/jwt.js");
 const { createEventEmail } = require("../../emails/createEventEmail.js")
 const { newUserEmail } = require("../../emails/newUserEmail.js")
 
-const getUser = async (req, res, next) => {
+const getUserAvatar = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
 
-    const user = await User.findOne({ token });
-    return res.status(200).json(user);
+    const parsedToken = token.replace("Bearer ", "");
+    const { id } = verifyJwt(parsedToken);
+
+    const user = await User.findById(id);
+    return res.status(200).json(user.avatar);
   } catch (error) {
     console.error(error);
     return res.status(400).json("❌ Users not found");
@@ -158,5 +161,5 @@ const putEvent = async (req, res, next) => {
   }
 };
 
-module.exports = { getUser, postEvent, putEvent, register, login, getUsers };
+module.exports = { getUserAvatar, postEvent, putEvent, register, login, getUsers };
 

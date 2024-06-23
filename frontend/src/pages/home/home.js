@@ -16,7 +16,7 @@ export const home = () => {
 
   const divLogo = document.createElement("div")
   divLogo.classList.add("div-logo")
-  //todo divLogo.addEventListener("click", eventFront)
+  //todo divLogo.addEventListener("click", showAllEvents)
 
   logo(divLogo)
   const header = document.querySelector("header")
