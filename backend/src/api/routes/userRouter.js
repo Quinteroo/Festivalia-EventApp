@@ -1,11 +1,11 @@
 const express = require("express");
 const userRouter = express.Router();
-const { getUserAvatar, register, login, postEvent, putEvent, getUsers } = require('../controllers/userController.js');
+const { getUserById, register, login, postEvent, putEvent, getUsers } = require('../controllers/userController.js');
 const { isAuth } = require("../../middleware/isAuth.js");
 const { isAdmin } = require("../../middleware/isAdmin.js");
 const { uploadAvatar, uploadPoster } = require("../../utils/file.js");
 
-userRouter.get('/avatar', getUserAvatar);
+userRouter.get('/:id', getUserById);
 userRouter.get('/users', isAdmin, getUsers);
 userRouter.post('/register', register);
 userRouter.post('/login', login);

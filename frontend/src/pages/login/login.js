@@ -104,8 +104,10 @@ const submit = async (email, password, form) => {
 
 
   const resFinal = await res.json()
+  const userID = resFinal.user._id
 
   localStorage.setItem("loginToken", resFinal.token)
+  localStorage.setItem("userID", userID)
   console.log(resFinal);
 
   home()
