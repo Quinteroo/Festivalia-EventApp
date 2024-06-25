@@ -3,8 +3,7 @@ import "./showUserAvatar.css";
 
 
 
-export const showUserAvatar = async () => {
-  const divUser = document.querySelector("div-user")
+export const showUserAvatar = async (elementoPadre) => {
 
   const userID = localStorage.getItem("userID")
 
@@ -13,4 +12,23 @@ export const showUserAvatar = async () => {
   const user = await res.json()
 
   console.log(user);
+
+  pintarAvatar(user.avatar, elementoPadre)
+}
+
+
+
+const pintarAvatar = (img, elementoPadre) => {
+
+  const divImg = document.createElement("div")
+  divImg.classList.add("div-img")
+
+  const imgAvatar = document.createElement("img")
+  imgAvatar.classList.add("img-avatar")
+  imgAvatar.src = img
+
+  divImg.append(imgAvatar)
+  elementoPadre.append(divImg)
+
+
 }

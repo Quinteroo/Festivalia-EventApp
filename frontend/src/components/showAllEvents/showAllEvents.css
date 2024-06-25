@@ -1,15 +1,13 @@
 
-main {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+
+
+.card{
+  margin: 15px;
 }
 
-
-.div-color{
-  width: 350px;
-  height: 350px;
-  background-color: rgb(206, 67, 79);
+.poster{
+  max-width: 350px;
+  max-height: 350px;
+  object-fit: cover;
+  object-position: center;
 }

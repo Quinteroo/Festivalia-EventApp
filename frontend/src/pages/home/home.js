@@ -11,26 +11,34 @@ export const home = () => {
   const divApp = document.querySelector("#app")
   divApp.innerHTML = "";
 
+  //ESTRUCTURA
   headerLP(divApp)
   storeFront(divApp)
   footer(divApp)
 
+  //HEADER
+  const header = document.querySelector("header")
+
   const divLogo = document.createElement("div")
   divLogo.classList.add("div-logo")
   divLogo.addEventListener("click", showAllEvents)
-
   logo(divLogo)
-  const header = document.querySelector("header")
   header.append(divLogo)
 
   const divUser = document.createElement("div")
   divUser.classList.add("div-user")
-  //avatar(divUser)
+  showUserAvatar(divUser)
   logOutDiv(divUser)
-
   header.append(divUser)
 
-  showUserAvatar()
-  showAllEvents()
+
+  //FRONTSTORE
+  const main = document.querySelector("main")
+
+  const allEventsSection = document.createElement("section")
+  allEventsSection.classList.add("all-events-section")
+  showAllEvents(allEventsSection)
+  main.append(allEventsSection)
+
 
 }

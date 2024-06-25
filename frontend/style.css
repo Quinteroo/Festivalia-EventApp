@@ -201,3 +201,12 @@ box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   transform: scale(1.01);
   border: 2px solid var(--qgd-color-15);
 }
+
+body {
+  width: 100%;
+  min-height: 100vh;
+} 
+#app {
+  width: 100%;
+  min-height: 100vh;
+} 

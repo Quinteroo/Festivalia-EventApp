@@ -1,4 +1,4 @@
-.img-container{
+.div-img{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -10,4 +10,5 @@
 .img-avatar{
   width: 32px;
   height: 32px;
+  border-radius: 20px;
 }
