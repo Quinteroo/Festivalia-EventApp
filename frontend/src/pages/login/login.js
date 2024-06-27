@@ -13,11 +13,13 @@ export const login = () => {
   const divApp = document.querySelector("#app");
   divApp.innerHTML = "";
 
+
   headerLP(divApp);
   storeFront(divApp);
   footer(divApp);
 
   const main = document.querySelector("main");
+
 
   const form = document.createElement("form");
   const divLogo = document.createElement("div");

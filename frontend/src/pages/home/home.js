@@ -35,10 +35,8 @@ export const home = () => {
   //FRONTSTORE
   const main = document.querySelector("main")
 
-  const allEventsSection = document.createElement("section")
-  allEventsSection.classList.add("all-events-section")
-  showAllEvents(allEventsSection)
-  main.append(allEventsSection)
+  showAllEvents(main)
+
 
 
 }

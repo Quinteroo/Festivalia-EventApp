@@ -104,7 +104,7 @@ box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .hover:hover {
-  scale: 1.02;
+  scale: 1.03;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
@@ -202,11 +202,14 @@ box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   border: 2px solid var(--qgd-color-15);
 }
 
-body {
+body, #app {
   width: 100%;
   min-height: 100vh;
 } 
-#app {
-  width: 100%;
-  min-height: 100vh;
-} 
+
+.background-image{
+  background-image: url("./src/assets/images/background-festival-LP.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
