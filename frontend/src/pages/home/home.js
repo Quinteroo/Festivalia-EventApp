@@ -33,9 +33,9 @@ export const home = () => {
 
 
   //FRONTSTORE
-  const main = document.querySelector("main")
+  //const main = document.querySelector("main")
 
-  showAllEvents(main)
+  showAllEvents()
 
 
 

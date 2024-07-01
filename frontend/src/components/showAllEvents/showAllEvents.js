@@ -1,10 +1,6 @@
 import "./showAllEvents.css"
 
-export const showAllEvents = async (elementoPadre) => {
-
-  const main = document.querySelector("main")
-  main.innerHTML = "";
-  main.classList.remove("background-image")
+export const showAllEvents = async () => {
 
 
   const res = await fetch('http://localhost:4001/api/v1/event')
@@ -12,12 +8,16 @@ export const showAllEvents = async (elementoPadre) => {
   const events = await res.json()
   console.log(events);
 
-  pintarEventos(events, elementoPadre)
+  pintarEventos(events)
 
 }
 
 
-const pintarEventos = (events, elementoPadre) => {
+const pintarEventos = (events) => {
+  const main = document.querySelector("main")
+  main.innerHTML = "";
+  main.classList.remove("background-image")
+
   for (const event of events) {
     const card = document.createElement("div")
     card.classList.add("card", "hover")
@@ -43,7 +43,7 @@ const pintarEventos = (events, elementoPadre) => {
     card.append(eventTitle)
     card.append(date)
     card.append(moreButton)
-    elementoPadre.append(card)
+    main.append(card)
 
   }
 }

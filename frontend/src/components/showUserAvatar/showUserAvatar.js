@@ -1,5 +1,5 @@
 import "./showUserAvatar.css";
-// import { URL } from "../../utils/url.js"
+import { showUserProfile } from "../showUserProfile/showUserProfile";
 
 
 
@@ -22,6 +22,7 @@ const pintarAvatar = (img, elementoPadre) => {
 
   const divImg = document.createElement("div")
   divImg.classList.add("div-img")
+  divImg.addEventListener("click", showUserProfile)
 
   const imgAvatar = document.createElement("img")
   imgAvatar.classList.add("img-avatar")
