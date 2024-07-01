@@ -1,4 +1,7 @@
 import "./showAllEvents.css"
+import { showEventDetails } from "../showEventDetails/showEventDetails.js"
+
+
 
 export const showAllEvents = async () => {
 
@@ -37,7 +40,7 @@ const pintarEventos = (events) => {
     const moreButton = document.createElement("button")
     moreButton.classList.add("primary-button", "hover")
     moreButton.textContent = "SEE MORE >"
-    //todo moreButton.addEventListener("click", showEventDetails)
+    moreButton.addEventListener("click", () => showEventDetails(event._id))
 
     card.append(poster)
     card.append(eventTitle)
