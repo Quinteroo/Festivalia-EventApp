@@ -213,3 +213,11 @@ body, #app {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.flex-row-wrap{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

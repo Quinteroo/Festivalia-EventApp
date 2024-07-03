@@ -1,7 +1,63 @@
 
 
-.div-prueba{
-  width: 350px;
-  height: 350px;
-  background-color: beige;
+.section-profile{
+  width: 80vw;
+  height: auto;
+  margin: 3%;
+  padding: 2%;
+  background-color: var(--qgd-color-07);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+}
+
+.div-poster{
+  width: 30%;
+}
+
+.poster-profile{
+  width: 100%;
+
+}
+
+.div-event-details{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-event-about{
+  width: 80%;
+}
+
+.div-event-about > p{
+  text-align: left;
+}
+
+.div-avatar-attendees{
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ul-attendees{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+
+}
+
+.avatar-attendee{
+  width: 32px;
+  height: 32px;
 }
