@@ -3,6 +3,7 @@ import { showUserProfile } from "../showUserProfile/showUserProfile";
 
 
 
+
 export const showUserAvatar = async (elementoPadre) => {
 
   const userID = localStorage.getItem("userID")
@@ -14,11 +15,12 @@ export const showUserAvatar = async (elementoPadre) => {
   console.log(user);
 
   pintarAvatar(user.avatar, elementoPadre)
+
 }
 
 
 
-const pintarAvatar = (img, elementoPadre) => {
+const pintarAvatar = (image, elementoPadre) => {
 
   const divImg = document.createElement("div")
   divImg.classList.add("div-img")
@@ -26,7 +28,8 @@ const pintarAvatar = (img, elementoPadre) => {
 
   const imgAvatar = document.createElement("img")
   imgAvatar.classList.add("img-avatar")
-  imgAvatar.src = img
+  imgAvatar.src = image || ".src/assets/images/default-avatar.png"
+
 
   divImg.append(imgAvatar)
   elementoPadre.append(divImg)

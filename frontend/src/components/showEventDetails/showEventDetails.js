@@ -57,23 +57,25 @@ const pintarEvent = (event) => {
   // ATTENDEES
   const divAvatarAttendees = document.createElement("div")
   divAvatarAttendees.classList.add("div-avatar-attendee")
+  divAvatarAttendees.innerHTML =
+    `
+  <h3>Attendees</h3>
+  `
 
   const ulAttendees = document.createElement("ul")
   ulAttendees.classList.add("ul-attendees")
 
-  for (let i = 0; i < 10; i++) {
-
+  event.attendees.forEach(attendee => {
     const liAttendee = document.createElement("li")
     liAttendee.classList.add("li-attendee")
 
     const avatarAttendee = document.createElement("img")
     avatarAttendee.classList.add("avatar-attendee")
-    avatarAttendee.src = event.attendees[i].attendeeAvatar
+    avatarAttendee.src = (attendee.attendeeAvatar) ? attendee.attendeeAvatar : "/assets/usuario.png"
 
     liAttendee.append(avatarAttendee)
     ulAttendees.append(liAttendee)
-
-  }
+  })
 
   divAvatarAttendees.append(ulAttendees)
 
