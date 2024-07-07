@@ -1,5 +1,7 @@
 import "./showAllEvents.css"
 import { showEventDetails } from "../showEventDetails/showEventDetails.js"
+import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js"
+
 
 
 
@@ -12,6 +14,7 @@ export const showAllEvents = async () => {
   console.log(events);
 
   pintarEventos(events)
+  addNewEventButton()
 
 }
 
@@ -23,7 +26,7 @@ const pintarEventos = (events) => {
 
   for (const event of events) {
     const card = document.createElement("div")
-    card.classList.add("card", "hover")
+    card.classList.add("card", "hover", "shadow")
 
     const poster = document.createElement("img")
     poster.classList.add("poster")
@@ -49,4 +52,5 @@ const pintarEventos = (events) => {
     main.append(card)
 
   }
+
 }

@@ -33,8 +33,6 @@ export const home = () => {
 
 
   //FRONTSTORE
-  //const main = document.querySelector("main")
-
   showAllEvents()
 
 

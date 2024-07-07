@@ -1,0 +1,22 @@
+.add-event-button{
+  width: 50px;
+  height: 50px;
+  border-radius: var(--qgd-border-radius-2);
+  background-image: url("../../../assets/images/createEventButton.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position:fixed;
+  top: 75vh;
+  right: 10vw;
+  cursor:pointer;
+}
+
+.form-event{
+  width: 500px;
+  height: 650px;
+  background-color: beige;
+  position: fixed;
+  top: 10%;
+  background-color: var(--qgd-color-07);
+}
