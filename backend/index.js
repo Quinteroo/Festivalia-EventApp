@@ -8,6 +8,7 @@ const attendeeRouter = require("./src/api/routes/attendeeRouter.js");
 const { errorHandler } = require('./src/middleware/errorHandler.js');
 const cors = require("cors")
 const cloudinary = require("cloudinary").v2;
+const path = require('path');
 
 const app = express();
 
@@ -22,6 +23,9 @@ cloudinary.config({
 
 app.use(express.json());
 connectDB();
+
+// Servir archivos estáticos desde la carpeta "public"
+app.use('/public', express.static(path.join(__dirname, '..', 'frontend', 'public')));
 
 
 app.use("/api/v1/user", userRouter);

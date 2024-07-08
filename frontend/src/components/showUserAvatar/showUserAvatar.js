@@ -15,6 +15,7 @@ export const showUserAvatar = async (elementoPadre) => {
   console.log(user);
 
   pintarAvatar(user.avatar, elementoPadre)
+  console.log(user.avatar);
 
 }
 
@@ -28,7 +29,7 @@ const pintarAvatar = (image, elementoPadre) => {
 
   const imgAvatar = document.createElement("img")
   imgAvatar.classList.add("img-avatar")
-  imgAvatar.src = image || ".src/assets/images/default-avatar.png"
+  imgAvatar.src = image
 
 
   divImg.append(imgAvatar)
