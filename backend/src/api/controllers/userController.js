@@ -102,9 +102,9 @@ const postEvent = async (req, res, next) => {
       });
     }
 
-    const regexDate = /^\d{4}-\d{2}-\d{2}$/;
+    const regexDate = /^\d{2}-\d{2}-\d{4}$/;
     if (!regexDate.test(date)) {
-      return res.status(400).json(`❌ ${date} no es una fecha válida. El formato debe ser YYYY-MM-DD.`);
+      return res.status(400).json(`❌ ${date} no es una fecha válida. El formato debe ser DD/MM/YYYY.`);
     }
 
     const newEvent = new Event({
