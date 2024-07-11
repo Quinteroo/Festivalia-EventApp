@@ -1,0 +1,8 @@
+.form-text{
+  font-size: x-large;
+  color: var(--qgd-color-25);
+}
+
+.input-style{
+  text-align: start;
+}

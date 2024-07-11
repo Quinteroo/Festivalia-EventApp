@@ -1,9 +1,8 @@
 const bcrypt = require('bcrypt');
 const User = require("../models/User.js");
 const Event = require("../models/Event.js");
-const Attendee = require("../models/Attendee.js");
-const { generateSing, verifyJwt } = require("../../utils/jwt.js");
-const { createEventEmail } = require("../../emails/createEventEmail.js")
+
+const { generateSing } = require("../../utils/jwt.js");
 const { newUserEmail } = require("../../emails/newUserEmail.js")
 
 const getUserById = async (req, res, next) => {
@@ -80,83 +79,5 @@ const login = async (req, res, next) => {
   }
 };
 
-const postEvent = async (req, res, next) => {
-  try {
-    const { title, location, style, description, date } = req.body;
 
-    if (!req.file || !title || !location || !style || !description || !date) {
-      return res.status(400).json("❌ Todos los campos son obligatorios.");
-    }
-
-    const existingEvent = await Event.findOne({ title });
-    if (existingEvent) {
-      return res.status(400).json(`❌ Ya existe un evento con el título ${title}.`);
-    } else {
-      const newEvent = new Event({
-        poster: req.file.path,
-        title,
-        location,
-        style,
-        description,
-        date,
-      });
-    }
-
-    const regexDate = /^\d{2}-\d{2}-\d{4}$/;
-    if (!regexDate.test(date)) {
-      return res.status(400).json(`❌ ${date} no es una fecha válida. El formato debe ser DD/MM/YYYY.`);
-    }
-
-    const newEvent = new Event({
-      poster: req.file.path,
-      title,
-      location,
-      style,
-      description,
-      date,
-    });
-
-    const eventSaved = await newEvent.save();
-
-    const token = req.headers.authorization;
-    const parsedToken = token.replace("Bearer ", "");
-    const { id } = verifyJwt(parsedToken);
-    const user = await User.findById(id);
-
-    user.organizedEvents.push(eventSaved._id);
-    await user.save();
-
-    createEventEmail(user.email, title)
-
-    return res.status(200).json(eventSaved);
-  } catch (error) {
-    console.error(error);
-    return res.status(400).json("❌ Evento no creado");
-  }
-};
-
-const putEvent = async (req, res, next) => {
-  try {
-    const { eventid } = req.params;
-    const oldEvent = await Event.findById(eventid);
-    if (!oldEvent) {
-      return res.status(404).json("❌ Evento no encontrado");
-    }
-    const attendee = new Attendee(req.body);
-    attendee.confirmedEvents.push(eventid);
-    await attendee.save();
-    if (!oldEvent.attendees.includes(attendee._id)) {
-      oldEvent.attendees.push(attendee._id);
-    } else {
-      return res.status(400).json("❌ Ya estás confirmado como asistencia");
-    }
-    const eventUpdated = await oldEvent.save();
-    return res.status(200).json(eventUpdated);
-  } catch (error) {
-    console.error(error);
-    return res.status(400).json("❌ No pudiste confirmar asistencia");
-  }
-};
-
-module.exports = { getUserById, postEvent, putEvent, register, login, getUsers };
-
+module.exports = { getUserById, register, login, getUsers };
