@@ -1,5 +1,5 @@
 import "./formNewEvent.css"
-import { home } from "../../../pages/home/home.js"
+import { showAllEvents } from "../../showAllEvents/showAllEvents.js"
 import { URL } from "../../../utils/url.js"
 
 export const formNewEvent = (elementoPadre) => {
@@ -87,5 +87,6 @@ const submit = async (e) => {
 
   const response = await res.json()
   console.log(response);
+  showAllEvents()
 
 }
