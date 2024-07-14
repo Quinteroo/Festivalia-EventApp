@@ -1,7 +1,6 @@
 const Event = require("../models/Event.js");
 const User = require("../models/User.js")
 const Attendee = require("../models/Attendee.js");
-const { verifyJwt } = require("../../utils/jwt.js");
 const { createEventEmail } = require("../../emails/createEventEmail.js")
 
 const getEventById = async (req, res, next) => {
@@ -35,6 +34,8 @@ const getEvents = async (req, res, next) => {
 const postEvent = async (req, res, next) => {
   try {
 
+    const { userID } = req.params
+
     const { title, location, style, description, date } = req.body;
 
     if (!req.file || !title || !location || !style || !description || !date) {
@@ -53,15 +54,13 @@ const postEvent = async (req, res, next) => {
 
     const eventSaved = await newEvent.save();
 
-    const token = req.headers.authorization;
-    const parsedToken = token.replace("Bearer ", "");
-    const { id } = verifyJwt(parsedToken);
-    const user = await User.findById(id);
 
+    const user = await User.findById(userID);
     user.organizedEvents.push(eventSaved._id);
     await user.save();
-
     createEventEmail(user.email, title)
+
+
     console.log(eventSaved);
     return res.status(200).json(eventSaved);
 
