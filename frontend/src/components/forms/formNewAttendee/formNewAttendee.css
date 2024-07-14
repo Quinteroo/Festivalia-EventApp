@@ -1,0 +1,12 @@
+.form-attendee{
+  position: fixed;
+  top: 20vh;
+}
+
+.close-div{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+}

@@ -73,30 +73,5 @@ const postEvent = async (req, res, next) => {
 
 
 
-const putEvent = async (req, res, next) => {
-  try {
-    const { eventid } = req.params;
-    const oldEvent = await Event.findById(eventid);
-    if (!oldEvent) {
-      return res.status(404).json("❌ Evento no encontrado");
-    }
-    const attendee = new Attendee(req.body);
-    attendee.confirmedEvents.push(eventid);
-    await attendee.save();
-    if (!oldEvent.attendees.includes(attendee._id)) {
-      oldEvent.attendees.push(attendee._id);
-    } else {
-      return res.status(400).json("❌ Ya estás confirmado como asistencia");
-    }
-    const eventUpdated = await oldEvent.save();
-    return res.status(200).json(eventUpdated);
-  } catch (error) {
-    console.error(error);
-    return res.status(400).json("❌ No pudiste confirmar asistencia");
-  }
-};
 
-
-
-
-module.exports = { getEventById, getEvents, postEvent, putEvent };
+module.exports = { getEventById, getEvents, postEvent };

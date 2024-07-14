@@ -72,10 +72,13 @@ const submit = async (email, password, form) => {
     existingError.remove();
   }
 
+
+
   const objetoFinal = JSON.stringify({
     password,
     email
   })
+
 
   const opciones = {
     method: "POST",
@@ -89,6 +92,8 @@ const submit = async (email, password, form) => {
 
   const pError = document.createElement("p")
   pError.classList.add("error", "subtext")
+
+
 
   if (res.status === 400) {
     pError.textContent = "❌ No hemos podido hacer login"

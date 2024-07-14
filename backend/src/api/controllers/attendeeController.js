@@ -1,4 +1,6 @@
 const Attendee = require("../models/Attendee.js");
+const User = require("../models/User.js")
+const Event = require("../models/Event.js")
 
 //  api/attendee/:id  >> Proporciona detalles de un asistente específico.
 const getAttendeeById = async (req, res, next) => {
@@ -21,4 +23,43 @@ const getAttendees = async (req, res, next) => {
   }
 };
 
-module.exports = { getAttendeeById, getAttendees };
+
+
+// usuario confirma asistencia a evento
+const postAttendee = async (req, res, next) => {
+  try {
+    const { userID } = req.params;
+    const { eventName } = req.body
+
+
+    const event = await Event.findOne({ eventName });
+    if (!event) {
+      return res.status(404).json("❌ Evento no encontrado");
+    }
+
+    const user = await User.findById(userID)
+
+    const attendee = new Attendee({
+      attendeeAvatar: user.avatar,
+      attendeeName: user.userName,
+      email: user.email,
+      confirmedEvents: [event._id]
+    })
+
+    await attendee.save();
+
+    if (!event.attendees.includes(attendee._id)) {
+      event.attendees.push(attendee._id);
+      await event.save();
+    }
+
+    console.log("😍 nuevo asistente al evento");
+    return res.status(200).json(attendee);
+
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json("❌ No pudiste confirmar asistencia");
+  }
+};
+
+module.exports = { getAttendeeById, getAttendees, postAttendee };

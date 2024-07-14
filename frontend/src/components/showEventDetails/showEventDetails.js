@@ -1,4 +1,5 @@
 import "./showEventDetails.css"
+import { formNewAttendee } from "../forms/formNewAttendee/formNewAttendee"
 
 export const showEventDetails = async (eventID) => {
 
@@ -44,6 +45,7 @@ const pintarEvent = (event) => {
   `
   sectionProfile.append(divEventDetails)
 
+
   // ABOUT
   const divEventAbout = document.createElement("div")
   divEventAbout.classList.add("div-event-about")
@@ -53,6 +55,15 @@ const pintarEvent = (event) => {
     <p>${event.description}</p>
   `
   sectionProfile.append(divEventAbout)
+
+
+  // BOTÓN CONFIRMAR ASISTENCIA
+  const newAttendeeButton = document.createElement("button")
+  newAttendeeButton.classList.add("new-attendee-button", "secondary-button", "hover")
+  newAttendeeButton.textContent = "¿Quieres asistir al evento?"
+  newAttendeeButton.addEventListener("click", formNewAttendee)
+
+  sectionProfile.append(newAttendeeButton)
 
   // ATTENDEES
   const divAvatarAttendees = document.createElement("div")
