@@ -32,7 +32,7 @@ const postAttendee = async (req, res, next) => {
     const { eventName } = req.body
 
 
-    const event = await Event.findOne({ eventName });
+    const event = await Event.findOne({ title: eventName });
     if (!event) {
       return res.status(404).json("❌ Evento no encontrado");
     }

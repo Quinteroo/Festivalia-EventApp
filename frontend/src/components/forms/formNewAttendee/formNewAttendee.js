@@ -51,16 +51,21 @@ const submit = async (e) => {
   const userID = localStorage.getItem("userID")
   const eventTitle = document.querySelector(".div-event-details > h3")
 
+  console.log(eventTitle);
 
   const opciones = {
     method: "POST",
     body: JSON.stringify({
-      eventName: eventTitle.value
+      eventName: eventTitle.textContent
     }),
     headers: {
       "content-type": "application/json"
     }
   }
+
+
+
+  console.log(opciones);
 
   const res = await fetch(`${URL}attendee/${userID}`, opciones)
 
@@ -71,6 +76,4 @@ const submit = async (e) => {
 
 
   alert("¡Genial! ya has sido registrado en el evento! Revisa tu email con los detalles y no olvides apuntarlo en tu agenda!")
-  // const formAttendee = document.querySelector("form-attendee")
-  // formAttendee.remove()
 }
