@@ -53,27 +53,35 @@ const submit = async (e) => {
 
   console.log(eventTitle);
 
-  const opciones = {
-    method: "POST",
-    body: JSON.stringify({
-      eventName: eventTitle.textContent
-    }),
-    headers: {
-      "content-type": "application/json"
+  try {
+    const opciones = {
+      method: "POST",
+      body: JSON.stringify({
+        eventName: eventTitle.textContent
+      }),
+      headers: {
+        "content-type": "application/json"
+      }
     }
+
+
+    console.log(opciones);
+
+    const res = await fetch(`${URL}attendee/${userID}`, opciones)
+
+    if (!res.ok) {  // (status fuera de rango 200-299)
+      const errorMsg = await res.json();
+      throw new Error(errorMsg);
+    }
+
+    const resFinal = await res.json()
+
+    console.log(resFinal);
+
+    alert("✅ ¡Genial! ya has sido registrado en el evento! Revisa tu email con los detalles y no olvides apuntarlo en tu agenda!")
+
+  } catch (error) {
+    console.log(error);
+    alert("❌ Ya te has registrado anteriormente!")
   }
-
-
-
-  console.log(opciones);
-
-  const res = await fetch(`${URL}attendee/${userID}`, opciones)
-
-  const resFinal = await res.json()
-
-  console.log(resFinal);
-
-
-
-  alert("¡Genial! ya has sido registrado en el evento! Revisa tu email con los detalles y no olvides apuntarlo en tu agenda!")
 }

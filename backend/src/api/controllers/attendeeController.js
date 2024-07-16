@@ -39,13 +39,21 @@ const postAttendee = async (req, res, next) => {
 
     const user = await User.findById(userID)
 
+
+
+    const existingAttendee = await Attendee.findOne({ user: user._id, confirmedEvents: event._id });
+    if (existingAttendee) {
+      return res.status(400).json("❌ Ya te has registrado.");
+    }
+
+
     const attendee = new Attendee({
       attendeeAvatar: user.avatar,
       attendeeName: user.userName,
       email: user.email,
-      confirmedEvents: [event._id]
+      confirmedEvents: [event._id],
+      user: user._id
     })
-
     await attendee.save();
 
     if (!event.attendees.includes(attendee._id)) {

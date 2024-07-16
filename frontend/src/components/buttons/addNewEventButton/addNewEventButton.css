@@ -14,8 +14,6 @@
 
 .form-event{
   width: 500px;
-  background-color: beige;
   position: fixed;
   top: 20%;
-  background-color: var(--qgd-color-07);
 }
