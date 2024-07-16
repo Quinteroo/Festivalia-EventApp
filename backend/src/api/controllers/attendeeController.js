@@ -1,6 +1,7 @@
 const Attendee = require("../models/Attendee.js");
 const User = require("../models/User.js")
 const Event = require("../models/Event.js")
+const { newAttendeeEmail } = require("../../emails/newAttendeeEmail.js")
 
 //  api/attendee/:id  >> Proporciona detalles de un asistente específico.
 const getAttendeeById = async (req, res, next) => {
@@ -55,6 +56,8 @@ const postAttendee = async (req, res, next) => {
       user: user._id
     })
     await attendee.save();
+
+    newAttendeeEmail(user.email, event.title, event.location, event.date, event.description)
 
     if (!event.attendees.includes(attendee._id)) {
       event.attendees.push(attendee._id);
