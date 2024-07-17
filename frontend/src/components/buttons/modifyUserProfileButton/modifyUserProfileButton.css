@@ -1,0 +1,14 @@
+.modify-user-profile-button{
+  width: 50px;
+  height: 50px;
+  /* border-radius: var(--qgd-border-radius-2);
+  /* background-color: var(--qgd-color-50); */
+  background-image: url("../../../assets/images/perfil.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position:fixed;
+  top: 75vh;
+  right: 10vw;
+  cursor:pointer;
+}

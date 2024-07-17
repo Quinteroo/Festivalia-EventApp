@@ -5,6 +5,11 @@ export const formNewAttendee = () => {
 
   const main = document.querySelector("main")
 
+  const existingFormAttendee = document.querySelector(".form-attendee")
+  if (existingFormAttendee) {
+    return
+  }
+
   const CLOSEdiv = document.createElement("div")
   CLOSEdiv.classList.add("close-div")
   const CLOSEbutton = document.createElement("button")

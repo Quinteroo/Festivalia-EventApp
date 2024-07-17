@@ -1,5 +1,6 @@
 import "./showUserProfile.css"
 import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
+import { modifyUserProfileButton } from "../buttons/modifyUserProfileButton/modifyUserProfileButton.js"
 
 
 export const showUserProfile = async () => {
@@ -13,6 +14,7 @@ export const showUserProfile = async () => {
   console.log(user);
 
   pintarProfile(user)
+  modifyUserProfileButton()
   showAllEventsButton()
 
 }
