@@ -1,5 +1,5 @@
 import "./modifyUserProfileButton.css"
-import { formModifyUserProfile } from "../../forms/formModifyUserProfile/formModifyUserProgfile.js"
+import { formModifyUserProfile } from "../../forms/formModifyUserProfile/formModifyUserProfile.js"
 
 export const modifyUserProfileButton = () => {
   const main = document.querySelector("main")
