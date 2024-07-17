@@ -1,5 +1,5 @@
 import "./showUserProfile.css"
-import { showUserAvatar } from "../showUserAvatar/showUserAvatar.js"
+
 
 export const showUserProfile = async () => {
 
@@ -23,48 +23,53 @@ const pintarProfile = async (user) => {
   const profile = document.createElement("section")
   profile.classList.add("profile")
 
-  await showUserAvatar(profile)
+  const userAvatar = document.createElement("img")
+  userAvatar.classList.add("user-avatar")
+  userAvatar.src = user.avatar
 
-  const userInfo = document.createElement("div")
-  userInfo.classList.add("user-info")
-
-  const userName = document.createElement("p")
+  const userName = document.createElement("h2")
   userName.classList.add("user-name")
   userName.textContent = user.userName
 
-  const userEmail = document.createElement("p")
-  userEmail.classList.add("user-email")
-  userEmail.textContent = user.email
-
-  userInfo.append(userName)
-  userInfo.append(userEmail)
-  profile.append(userInfo)
-
   const divAboutMe = document.createElement("div")
   divAboutMe.classList.add("div-about-me")
-  const aboutMeText = document.createElement("p")
-  aboutMeText.classList.add("about-me-text")
-  aboutMeText.textContent = user.aboutMe
-  divAboutMe.append(aboutMeText)
+  const aboutMeTitle = document.createElement("h3")
+  aboutMeTitle.classList.add("about-me-title")
+  aboutMeTitle.textContent = "About me:"
+  const aboutMe = document.createElement("p")
+  aboutMe.classList.add("about-me")
+  aboutMe.textContent = user.aboutMe || "Escribe algo sobre ti."
+  divAboutMe.append(aboutMeTitle)
+  divAboutMe.append(aboutMe)
+
+  profile.append(userAvatar)
+  profile.append(userName)
   profile.append(divAboutMe)
+
 
   const divOrganizedEvents = document.createElement("div")
   divOrganizedEvents.classList.add("div-organized-events")
+  divOrganizedEvents.innerHTML = `<h3>Eventos organizados:</h3>`
 
-  const showOrganizedEvents = (user) => {
-    for (const event of user.organizedEvents) {
-      const eventDiv = document.createElement("div")
-      eventDiv.classList.add("event-div")
+  for (const event of user.organizedEvents) {
+    const eventDiv = document.createElement("div")
+    eventDiv.classList.add("event-div")
 
-      const eventPoster = document.createElement("img")
-      eventPoster.classList.add("event-poster")
-      eventPoster.src = event.poster
+    const eventPoster = document.createElement("img")
+    eventPoster.classList.add("event-poster")
+    eventPoster.src = event.poster
 
-      eventDiv.append(eventPoster)
+    const eventTitle = document.createElement("p")
+    eventTitle.classList.add("event-title")
+    eventTitle.textContent = event.title
 
-      divOrganizedEvents.append(eventDiv)
-    }
+    eventDiv.append(eventPoster)
+    eventDiv.append(eventTitle)
+
+    divOrganizedEvents.append(eventDiv)
   }
+
+
 
   profile.append(divOrganizedEvents)
   main.append(profile)

@@ -88,36 +88,28 @@ const submit = async (email, password, form) => {
     }
   }
 
-  const res = await fetch(`${URL}user/login`, opciones)
+  try {
+    const res = await fetch(`${URL}user/login`, opciones);
+    if (!res.ok) {
+      const errorMsg = await res.json();
+      const pError = document.createElement("p");
+      pError.classList.add("error", "subtext");
+      pError.textContent = errorMsg;
+      form.append(pError);
+      throw new Error(errorMsg);
+    }
 
-  const pError = document.createElement("p")
-  pError.classList.add("error", "subtext")
+    const resFinal = await res.json();
+    const userID = resFinal.user._id;
 
+    localStorage.setItem("loginToken", resFinal.token);
+    localStorage.setItem("userID", userID);
+    console.log(resFinal);
 
-
-  if (res.status === 400) {
-    pError.textContent = "❌ No hemos podido hacer login"
-    form.append(pError)
-    return
-  } else if (res.status === 401) {
-    pError.textContent = "❌ No existe ese email de usuario"
-    form.append(pError)
-    return
-  } else if (res.status === 402) {
-    pError.textContent = "❌ contraseña incorrecta"
-    form.append(pError)
-    return
+    home();
+  } catch (error) {
+    console.error("Error during login:", error);
   }
-
-
-  const resFinal = await res.json()
-  const userID = resFinal.user._id
-
-  localStorage.setItem("loginToken", resFinal.token)
-  localStorage.setItem("userID", userID)
-  console.log(resFinal);
-
-  home()
 
 
 }

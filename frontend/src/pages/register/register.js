@@ -78,30 +78,23 @@ const submit = async (userName, email, password, form) => {
     }
   }
 
-  const res = await fetch("http://localhost:4001/api/v1/user/register", opciones)
+  try {
+    const res = await fetch("http://localhost:4001/api/v1/user/register", opciones);
 
-  const pError = document.createElement("p")
-  pError.classList.add("error", "subtext")
+    if (!res.ok) {
+      const errorMsg = await res.json();
+      const pError = document.createElement("p");
+      pError.classList.add("error", "subtext");
+      pError.textContent = errorMsg;
+      form.append(pError);
+      throw new Error(errorMsg);
+    }
 
-  if (res.status === 400) {
-    pError.textContent = "❌ No se ha podido registrar el usuario"
-    form.append(pError)
-    return
-  } else if (res.status === 401) {
-    pError.textContent = "❌ Los campos nombre, email y contraseña son obligatorios!"
-    form.append(pError)
-    return
-  } else if (res.status === 402) {
-    pError.textContent = "❌ Password: minusc, mayusc, un numero, mínimo 6 caracteres, !@#_-. no están permitidos"
-    form.append(pError)
-    return
+    const resFinal = await res.json();
+    console.log(resFinal);
+    login();
+  } catch (error) {
+    console.error("Error during registration:", error);
   }
-
-
-
-  const resFinal = await res.json()
-
-  console.log(resFinal);
-  login()
 
 }

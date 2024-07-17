@@ -1,0 +1,9 @@
+.profile{
+  width: 50vw;
+  height: auto;
+  background-color: var(--qgd-color-07);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

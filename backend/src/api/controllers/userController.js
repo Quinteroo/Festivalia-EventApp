@@ -32,12 +32,12 @@ const register = async (req, res, next) => {
     const { userName, email, password } = req.body;
 
     if (!userName || !email || !password) {
-      return res.status(401).json("❌ Los campos nombre, email y contraseña son obligatorios!");
+      return res.status(400).json("❌ Los campos nombre, email y contraseña son obligatorios!");
     }
 
     const regexPasword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/
     if (!regexPasword.test(password)) {
-      return res.status(402).json("❌ minusc, mayusc, un numero, mínimo 6 caracteres, !@#_-. no están permitidos");
+      return res.status(400).json("❌ minusc, mayusc, un numero, mínimo 6 caracteres, !@#_-. no están permitidos");
     }
 
 
@@ -65,14 +65,20 @@ const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(401).json("❌ No existe usuario");
+      return res.status(400).json("❌ No existe usuario");
     }
-    if (bcrypt.compareSync(req.body.password, user.password)) {
+
+
+    const match = await bcrypt.compare(req.body.password, user.password);
+    console.log("Password match:", match);
+
+    if (match) {
       const token = generateSing(user._id);
       return res.status(200).json({ user, token });
     } else {
-      return res.status(402).json("❌ contraseña incorrecta");
+      return res.status(400).json("❌ contraseña incorrecta");
     }
+
   } catch (error) {
     console.log(error);
     return res.status(400).json("❌ No hemos podido hacer login");
