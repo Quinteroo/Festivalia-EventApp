@@ -1,0 +1,13 @@
+.show-all-events-button{
+  width: 50px;
+  height: 50px;
+  border-radius: var(--qgd-border-radius-2);
+  background-image: url("../../../assets/images/calendario.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position:fixed;
+  top: 85vh;
+  right: 10vw;
+  cursor:pointer;
+}

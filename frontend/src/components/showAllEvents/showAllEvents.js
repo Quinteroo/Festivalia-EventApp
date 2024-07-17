@@ -1,6 +1,7 @@
 import "./showAllEvents.css"
 import { showEventDetails } from "../showEventDetails/showEventDetails.js"
 import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js"
+import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
 
 
 
@@ -15,6 +16,7 @@ export const showAllEvents = async () => {
 
   pintarEventos(events)
   addNewEventButton()
+  showAllEventsButton()
 
 }
 

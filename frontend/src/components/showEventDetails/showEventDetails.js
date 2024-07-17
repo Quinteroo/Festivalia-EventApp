@@ -1,5 +1,6 @@
 import "./showEventDetails.css"
 import { formNewAttendee } from "../forms/formNewAttendee/formNewAttendee"
+import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
 
 export const showEventDetails = async (eventID) => {
 
@@ -10,6 +11,7 @@ export const showEventDetails = async (eventID) => {
   const event = await res.json()
 
   pintarEvent(event)
+  showAllEventsButton()
 
 }
 

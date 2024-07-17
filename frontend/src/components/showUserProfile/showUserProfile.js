@@ -1,4 +1,5 @@
 import "./showUserProfile.css"
+import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
 
 
 export const showUserProfile = async () => {
@@ -12,6 +13,7 @@ export const showUserProfile = async () => {
   console.log(user);
 
   pintarProfile(user)
+  showAllEventsButton()
 
 }
 
