@@ -6,7 +6,7 @@ const { getEventById, getEvents, postEvent } = require("../controllers/eventCont
 
 eventRouter.get("/:id", getEventById);
 eventRouter.get("/", getEvents);
-eventRouter.post('/event/:userID', uploadPoster.single("poster"), postEvent);
+eventRouter.post('/event/:userID', [isAuth], uploadPoster.single("poster"), postEvent);
 
 
 module.exports = eventRouter;

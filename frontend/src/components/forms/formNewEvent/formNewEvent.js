@@ -82,7 +82,10 @@ const submit = async (e) => {
 
   const res = await fetch(`${URL}event/event/${userID}`, {
     method: "POST",
-    body: formData
+    body: formData,
+    headers: {
+      "authorization": `Bearer ${localStorage.getItem("loginToken")}`
+    }
   })
 
   const response = await res.json()
