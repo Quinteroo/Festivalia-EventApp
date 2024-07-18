@@ -10,3 +10,7 @@
   justify-content: right;
   align-items: center;
 }
+
+.input-name{
+  padding-left: 5px;
+}

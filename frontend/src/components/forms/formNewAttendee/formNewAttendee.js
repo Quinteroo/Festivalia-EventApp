@@ -65,7 +65,8 @@ const submit = async (e) => {
         eventName: eventTitle.textContent
       }),
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("loginToken")}`
       }
     }
 

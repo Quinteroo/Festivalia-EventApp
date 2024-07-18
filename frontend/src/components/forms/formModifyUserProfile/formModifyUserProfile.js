@@ -1,4 +1,7 @@
 import "./formModifyUserProfile.css"
+import { showUserProfile } from "../../showUserProfile/showUserProfile.js"
+import { URL } from "../../../utils/url.js"
+import { showUserAvatar } from "../../showUserAvatar/showUserAvatar.js"
 
 export const formModifyUserProfile = () => {
   const main = document.querySelector("main")
@@ -18,29 +21,40 @@ export const formModifyUserProfile = () => {
   CLOSEbutton.addEventListener("click", () => formModifyUserProfile.remove())
 
   const formModifyUserProfile = document.createElement("form")
-  formModifyUserProfile.classList.add("form-modify-user-profile")
+  formModifyUserProfile.classList.add("form-modify-user-profile", "shadow")
 
   const formModifyUserProfileTitle = document.createElement("h3")
   formModifyUserProfileTitle.classList.add("form-modify-user-profile-title", "secondary-title")
   formModifyUserProfileTitle.textContent = "¿Quieres modificar tu perfil?"
 
 
-  const formModifyUserProfileText = document.createElement("p")
-  formModifyUserProfileText.classList.add("form-modify-user-profile-text", "text")
-  formModifyUserProfileText.textContent = "hola caracola."
+  const inputName = document.createElement("input")
+  inputName.classList.add("input-name")
+  inputName.type = "text"
+  inputName.placeholder = "Nuevo nombre de usuario"
+
+  const inputAboutMe = document.createElement("textarea")
+  inputAboutMe.classList.add("input-about-me")
+  inputAboutMe.placeholder = "Cuenta algo sobre ti."
+
+  const inputAvatar = document.createElement("input")
+  inputAvatar.classList.add("input-avatar")
+  inputAvatar.type = "file"
+
 
 
   const modifyButton = document.createElement("button")
-  modifyButton.classList.add("modify-button", "primary-button")
+  modifyButton.classList.add("modify-button", "primary-button", "hover", "shadow")
   modifyButton.textContent = "Modificar"
-  // modifyButton.addEventListener("click", submit)
-  modifyButton.addEventListener("click", () => formAttendee.remove())
 
+  formModifyUserProfile.addEventListener("submit", (e) => submit(e))
 
 
   formModifyUserProfile.append(CLOSEdiv)
   formModifyUserProfile.append(formModifyUserProfileTitle)
-  formModifyUserProfile.append(formModifyUserProfileText)
+  formModifyUserProfile.append(inputName)
+  formModifyUserProfile.append(inputAboutMe)
+  formModifyUserProfile.append(inputAvatar)
   formModifyUserProfile.append(modifyButton)
 
   main.append(formModifyUserProfile)
@@ -55,36 +69,45 @@ const submit = async (e) => {
 
   const userID = localStorage.getItem("userID")
 
+  const form = e.target;
+  const inputName = form.querySelector(".input-name");
+  const inputAboutMe = form.querySelector(".input-about-me");
+  const inputAvatar = form.querySelector(".input-avatar");
 
-  try {
-    const opciones = {
-      method: "POST",
-      body: JSON.stringify({
-        eventName: eventTitle.textContent
-      }),
-      headers: {
-        "content-type": "application/json"
-      }
-    }
+  const existingError = form.querySelector(".error");
+  if (existingError) {
+    existingError.remove();
+  }
 
 
-    console.log(opciones);
+  const formData = new FormData()
 
-    const res = await fetch(`${URL}attendee/${userID}`, opciones)
+  formData.append("userName", inputName.value)
+  formData.append("aboutMe", inputAboutMe.value)
+  formData.append("avatar", inputAvatar.files[0])
 
-    if (!res.ok) {  // (status fuera de rango 200-299)
-      const errorMsg = await res.json();
-      throw new Error(errorMsg);
-    }
+  const res = await fetch(`${URL}user/profile/${userID}`, {
+    method: "PUT",
+    body: formData
+  })
 
-    const resFinal = await res.json()
+  if (!res.ok) {  //fuera de estatus 200 a 299
+    const errorMsg = await res.json();
+    const pError = document.createElement("p");
+    pError.classList.add("error", "subtext");
+    pError.textContent = errorMsg;
+    form.append(pError);
+    throw new Error(errorMsg);
+  }
 
-    console.log(resFinal);
+  const response = await res.json()
+  console.log(response);
 
-    alert("✅ Perfil modificado correctamente.")
+  if (window.confirm("✅ Perfil modificado correctamente.")) {
+    const divImg = document.querySelector(".div-img")
+    divImg.innerHTML = ""
+    showUserAvatar(divImg)
+    showUserProfile();
 
-  } catch (error) {
-    console.log(error);
-    alert("❌ Algo falló en la modificación de tu perfil.")
   }
 }

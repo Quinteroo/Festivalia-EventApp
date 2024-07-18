@@ -108,7 +108,7 @@ const submit = async (email, password, form) => {
 
     home();
   } catch (error) {
-    console.error("Error during login:", error);
+    console.error("Error durante login:", error);
   }
 
 

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require("../models/User.js");
 const Event = require("../models/Event.js");
+const { deleteFile } = require("../../utils/deleteFile.js")
 
 const { generateSing } = require("../../utils/jwt.js");
 const { newUserEmail } = require("../../emails/newUserEmail.js")
@@ -85,5 +86,41 @@ const login = async (req, res, next) => {
   }
 };
 
+const putUser = async (req, res, next) => {
+  const { userID } = req.params
+  const { userName, aboutMe } = req.body
 
-module.exports = { getUserById, register, login, getUsers };
+  // existingName = await find({ userName })
+  // if (existingName) {
+  //   return res.status(400).json("❌ Nombre de usuario no disponible.");
+
+  // }
+
+  try {
+    const oldUser = await User.findById(userID)
+
+    const newUser = new User({
+      userName: userName || oldUser.userName,
+      aboutMe: aboutMe || oldUser.aboutMe
+    })
+
+    newUser._id = userID
+    const organizedEvents = req.body.organizedEvents || []
+    newUser.organizedEvents = [...oldUser.organizedEvents, ...organizedEvents]
+
+    if (req.file) {
+      newUser.avatar = req.file.path
+      deleteFile(oldUser.avatar)
+    }
+
+    const userUpdated = await User.findByIdAndUpdate(userID, newUser, { new: true })
+    return res.status(200).json(userUpdated)
+
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json("❌ Error al actualizar el perfil.")
+  }
+}
+
+
+module.exports = { getUserById, register, login, getUsers, putUser };
