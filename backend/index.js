@@ -29,7 +29,7 @@ app.use('/public', express.static(path.join(__dirname, '..', 'frontend', 'public
 
 
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/event", eventRouter);
+app.use("/api/v1/events", eventRouter);
 app.use("/api/v1/attendee", attendeeRouter);
 
 app.use("*", (req, res, next) => {

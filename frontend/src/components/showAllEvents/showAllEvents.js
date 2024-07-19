@@ -4,31 +4,34 @@ import { showEventDetails } from "../showEventDetails/showEventDetails.js";
 import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js";
 import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js";
 import { showLoading, hideLoading } from "../loading/loading.js";
-import { URL } from "../../utils/url.js"
+import { functionFetch } from "../../utils/functionFetch.js";
 
 
 
 export const showAllEvents = async () => {
-  showLoading();
 
   try {
-    const res = await fetch(`${URL}event`);
-    const events = await res.json();
+    showLoading();
 
-    if (events) {
+    const eventos = await functionFetch("events", "", "GET", null, null)
+
+    if (eventos) {
       hideLoading();
-      pintarEventos(events);
+      pintarEventos(eventos);
       addNewEventButton();
       showAllEventsButton();
     }
+
+
   } catch (error) {
-    console.error('Error fetching events:', error);
-    hideLoading();
+    console.error('❌ Error fetching events:', error);
+    hideLoading(); x
+
   }
 };
 
 
-const pintarEventos = (events) => {
+const pintarEventos = (eventos) => {
   const main = document.querySelector("main")
   main.innerHTML = "";
   main.classList.remove("background-image")
@@ -38,7 +41,7 @@ const pintarEventos = (events) => {
 
 
 
-  for (const event of events) {
+  for (const event of eventos) {
     const card = document.createElement("div")
     card.classList.add("card", "hover", "shadow")
 
