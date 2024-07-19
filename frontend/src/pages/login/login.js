@@ -6,7 +6,7 @@ import { logo } from "../../components/logo/logo.js";
 import { landingPage } from "../../../main.js";
 import { register } from '../register/register.js';
 import { home } from '../home/home.js';
-import { URL } from "../../utils/url.js"
+import { functionFetch } from '../../utils/functionFetch.js';
 
 
 export const login = () => {
@@ -66,50 +66,27 @@ export const login = () => {
 
 // REGISTER SUBMIT
 const submit = async (email, password, form) => {
-
   const existingError = form.querySelector(".error");
   if (existingError) {
     existingError.remove();
   }
 
-
-
-  const objetoFinal = JSON.stringify({
-    password,
-    email
-  })
-
-
-  const opciones = {
-    method: "POST",
-    body: objetoFinal,
-    headers: {
-      "content-type": "application/json"
-    }
-  }
+  const objeto = JSON.stringify({ password, email });
 
   try {
-    const res = await fetch(`${URL}user/login`, opciones);
-    if (!res.ok) {
-      const errorMsg = await res.json();
-      const pError = document.createElement("p");
-      pError.classList.add("error", "subtext");
-      pError.textContent = errorMsg;
-      form.append(pError);
-      throw new Error(errorMsg);
-    }
+    const user = await functionFetch("user/login", "", "POST", objeto, null);
 
-    const resFinal = await res.json();
-    const userID = resFinal.user._id;
 
-    localStorage.setItem("loginToken", resFinal.token);
-    localStorage.setItem("userID", userID);
-    console.log(resFinal);
+    localStorage.setItem("loginToken", user.token);
+    localStorage.setItem("userID", user.user._id);
 
     home();
   } catch (error) {
-    console.error("Error durante login:", error);
+    const errorMsg = error.message;
+    const pError = document.createElement("p");
+    pError.classList.add("error", "subtext");
+    pError.textContent = errorMsg;
+    form.append(pError);
+    console.error("Error during login:", errorMsg);
   }
-
-
 }

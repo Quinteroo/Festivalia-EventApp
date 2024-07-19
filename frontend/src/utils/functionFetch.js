@@ -1,9 +1,14 @@
+import { showLoading, hideLoading } from "../components/loading/loading.js"
 
-// await functionFetch(route, params, method, objeto, token)
+
+
+//? await functionFetch(route, params, method, objeto, token)
+
+
 
 export const functionFetch = async (route, params, method, objeto, token) => {
+  showLoading()
   try {
-
     const url = `http://localhost:4001/api/v1/${route}/${params}`;
 
     const options = {
@@ -24,13 +29,22 @@ export const functionFetch = async (route, params, method, objeto, token) => {
 
     const response = await res.json();
 
-    return response
+    if (response) {
+      hideLoading()
+    }
+
+    if (!res.ok) {  //esttus fuera de rango 200-299
+      throw new Error(response);
+    }
+
+    return response;
 
   } catch (error) {
-    console.error('Error fetching events:', error);
-
+    console.error('Error en el fetching:', error);
+    throw error; // Asegurar que el error sea lanzado
+    hideLoading()
   }
-
 }
+
 
 

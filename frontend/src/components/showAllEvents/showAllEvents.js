@@ -11,12 +11,12 @@ import { functionFetch } from "../../utils/functionFetch.js";
 export const showAllEvents = async () => {
 
   try {
-    showLoading();
+    // showLoading();
 
     const eventos = await functionFetch("events", "", "GET", null, null)
 
     if (eventos) {
-      hideLoading();
+      // hideLoading();
       pintarEventos(eventos);
       addNewEventButton();
       showAllEventsButton();
