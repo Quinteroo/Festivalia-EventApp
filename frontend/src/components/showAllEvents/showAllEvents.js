@@ -1,24 +1,31 @@
-import "./showAllEvents.css"
-import { showEventByStyle } from "../showEventByStyle/showEventByStyle.js"
-import { showEventDetails } from "../showEventDetails/showEventDetails.js"
-import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js"
-import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
-
+import "./showAllEvents.css";
+import { showEventByStyle } from "../showEventByStyle/showEventByStyle.js";
+import { showEventDetails } from "../showEventDetails/showEventDetails.js";
+import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js";
+import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js";
+import { showLoading, hideLoading } from "../loading/loading.js";
+import { URL } from "../../utils/url.js"
 
 
 
 export const showAllEvents = async () => {
+  showLoading();
 
+  try {
+    const res = await fetch(`${URL}event`);
+    const events = await res.json();
 
-  const res = await fetch('http://localhost:4001/api/v1/event')
-
-  const events = await res.json()
-
-  pintarEventos(events)
-  addNewEventButton()
-  showAllEventsButton()
-
-}
+    if (events) {
+      hideLoading();
+      pintarEventos(events);
+      addNewEventButton();
+      showAllEventsButton();
+    }
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    hideLoading();
+  }
+};
 
 
 const pintarEventos = (events) => {
