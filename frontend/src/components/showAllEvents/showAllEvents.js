@@ -1,4 +1,5 @@
 import "./showAllEvents.css"
+import { showEventByStyle } from "../showEventByStyle/showEventByStyle.js"
 import { showEventDetails } from "../showEventDetails/showEventDetails.js"
 import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js"
 import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
@@ -12,7 +13,6 @@ export const showAllEvents = async () => {
   const res = await fetch('http://localhost:4001/api/v1/event')
 
   const events = await res.json()
-  console.log(events);
 
   pintarEventos(events)
   addNewEventButton()
@@ -25,6 +25,11 @@ const pintarEventos = (events) => {
   const main = document.querySelector("main")
   main.innerHTML = "";
   main.classList.remove("background-image")
+
+
+  showEventByStyle()
+
+
 
   for (const event of events) {
     const card = document.createElement("div")

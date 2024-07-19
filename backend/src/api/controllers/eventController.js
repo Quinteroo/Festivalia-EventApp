@@ -3,6 +3,20 @@ const User = require("../models/User.js")
 const Attendee = require("../models/Attendee.js");
 const { createEventEmail } = require("../../emails/createEventEmail.js")
 
+
+const getEventByStyle = async (req, res, next) => {
+  try {
+    const { style } = req.params
+    const event = await Event.find({ style })
+    return res.status(200).json(event)
+
+  } catch (error) {
+    return res.status(400).json("No hay eventos organizados con ese estilo.")
+  }
+}
+
+
+
 const getEventById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -74,4 +88,4 @@ const postEvent = async (req, res, next) => {
 
 
 
-module.exports = { getEventById, getEvents, postEvent };
+module.exports = { getEventById, getEvents, postEvent, getEventByStyle };

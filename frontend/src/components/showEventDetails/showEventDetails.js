@@ -1,5 +1,5 @@
 import "./showEventDetails.css"
-import { formNewAttendee } from "../forms/formNewAttendee/formNewAttendee"
+import { formNewAttendee } from "../forms/formNewAttendee/formNewAttendee.js"
 import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
 
 export const showEventDetails = async (eventID) => {
