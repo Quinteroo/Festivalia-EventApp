@@ -34,15 +34,16 @@ export const functionFetch = async (route, params, method, objeto, token) => {
     }
 
     if (!res.ok) {  //esttus fuera de rango 200-299
+      hideLoading()
       throw new Error(response);
     }
 
     return response;
 
   } catch (error) {
+    hideLoading()
     console.error('Error en el fetching:', error);
     throw error; // Asegurar que el error sea lanzado
-    hideLoading()
   }
 }
 
