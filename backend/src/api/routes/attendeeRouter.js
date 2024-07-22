@@ -6,7 +6,7 @@ const { isAuth } = require("../../middleware/isAuth.js")
 
 attendeeRouter.get("/:id", [isAdmin], getAttendeeById);
 attendeeRouter.get("/", getAttendees);
-attendeeRouter.post("/:userID", [isAuth], postAttendee);
+attendeeRouter.post("newAttendee/:userID", [isAuth], postAttendee);
 
 module.exports = attendeeRouter;
 

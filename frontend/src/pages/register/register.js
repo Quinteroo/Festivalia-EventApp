@@ -5,6 +5,7 @@ import { footer } from "../../components/footer/footer.js";
 import { logo } from "../../components/logo/logo.js";
 import { landingPage } from "../../../main.js";
 import { login } from "../login/login.js";
+import { functionFetch } from "../../utils/functionFetch.js";
 
 export const register = () => {
   const divApp = document.querySelector("#app");
@@ -64,37 +65,27 @@ const submit = async (userName, email, password, form) => {
     existingError.remove();
   }
 
-  const objetoFinal = JSON.stringify({
+  const objeto = JSON.stringify({
     userName,
     password,
     email
   })
 
-  const opciones = {
-    method: "POST",
-    body: objetoFinal,
-    headers: {
-      "content-type": "application/json"
-    }
-  }
-
   try {
-    const res = await fetch("http://localhost:4001/api/v1/user/register", opciones);
+    //? await functionFetch(route, params, method, objeto, token)
 
-    if (!res.ok) {
-      const errorMsg = await res.json();
-      const pError = document.createElement("p");
-      pError.classList.add("error", "subtext");
-      pError.textContent = errorMsg;
-      form.append(pError);
-      throw new Error(errorMsg);
-    }
+    const user = await functionFetch("user/register", "", "POST", objeto, null);
 
-    const resFinal = await res.json();
-    console.log(resFinal);
+    console.log(user);
+
     login();
   } catch (error) {
-    console.error("Error during registration:", error);
+    const errorMsg = error.message;
+    const pError = document.createElement("p");
+    pError.classList.add("error", "subtext");
+    pError.textContent = errorMsg;
+    form.append(pError);
+    console.error("Error durante el login:", errorMsg);
   }
 
 }

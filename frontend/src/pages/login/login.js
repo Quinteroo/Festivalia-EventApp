@@ -87,6 +87,6 @@ const submit = async (email, password, form) => {
     pError.classList.add("error", "subtext");
     pError.textContent = errorMsg;
     form.append(pError);
-    console.error("Error during login:", errorMsg);
+    console.error("Error durante el login:", errorMsg);
   }
 }

@@ -71,7 +71,6 @@ const login = async (req, res, next) => {
 
 
     const match = await bcrypt.compare(req.body.password, user.password);
-    console.log("Password match:", match);
 
     if (match) {
       const token = generateSing(user._id);

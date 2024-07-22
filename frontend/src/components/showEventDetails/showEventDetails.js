@@ -1,22 +1,38 @@
 import "./showEventDetails.css"
 import { formNewAttendee } from "../forms/formNewAttendee/formNewAttendee.js"
 import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
+import { functionFetch } from "../../utils/functionFetch.js"
 
-export const showEventDetails = async (eventID) => {
+export const showEventDetails = async (id) => {
+  const main = document.querySelector("main")
 
-  console.log("Event ID:", eventID)
 
-  const res = await fetch(`http://localhost:4001/api/v1/event/${eventID}`)
+  try {
+    console.log(id);
 
-  const event = await res.json()
+    const evento = await functionFetch("events", "66561800ed46d2a6b3df6e8b", "GET", null, null)
+    console.log(evento);
 
-  pintarEvent(event)
-  showAllEventsButton()
+    if (evento) {
+      pintarEvent(evento)
+      showAllEventsButton();
+    }
+
+
+  } catch (error) {
+    console.error('❌ Error en el fetching:', error);
+    // const errorMsg = error.message;
+    const pError = document.createElement("p");
+    pError.classList.add("error", "subtext");
+    pError.textContent = "❌ hubo un problema al cargar los datos.";
+    main.append(pError);
+
+  }
 
 }
 
 
-const pintarEvent = (event) => {
+const pintarEvent = (evento) => {
   const main = document.querySelector("main")
   main.innerHTML = "";
 
@@ -29,7 +45,7 @@ const pintarEvent = (event) => {
 
   const posterProfile = document.createElement("img")
   posterProfile.classList.add("poster-profile")
-  posterProfile.src = event.poster
+  posterProfile.src = evento.poster
 
   divPoster.append(posterProfile)
   sectionProfile.append(divPoster)
@@ -39,11 +55,11 @@ const pintarEvent = (event) => {
   divEventDetails.classList.add("div-event-details")
   divEventDetails.innerHTML =
     `
-    <h3>${event.title}</h3>
-    <p>${event.date}</p>
-    <p>${event.location}</p>
-    <p>${event.style}</p>
-    <p>asistentes: ${event.attendees.length}</p>
+    <h3>${evento.title}</h3>
+    <p>${evento.date}</p>
+    <p>${evento.location}</p>
+    <p>${evento.style}</p>
+    <p>asistentes: ${evento.attendees.length}</p>
   `
   sectionProfile.append(divEventDetails)
 
@@ -54,7 +70,7 @@ const pintarEvent = (event) => {
   divEventAbout.innerHTML =
     `
     <h3>About</h3>
-    <p>${event.description}</p>
+    <p>${evento.description}</p>
   `
   sectionProfile.append(divEventAbout)
 
@@ -78,7 +94,7 @@ const pintarEvent = (event) => {
   const ulAttendees = document.createElement("ul")
   ulAttendees.classList.add("ul-attendees")
 
-  event.attendees.forEach(attendee => {
+  evento.attendees.forEach(attendee => {
     const liAttendee = document.createElement("li")
     liAttendee.classList.add("li-attendee")
 

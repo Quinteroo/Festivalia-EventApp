@@ -20,16 +20,17 @@ const getEventByStyle = async (req, res, next) => {
 const getEventById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const event = await Event.findById(id).populate("attendees"); // attendee es la propiedad del evento que me kiero traer
+    const event = await Event.findById(id).populate("attendees");
+
     if (!event) {
       return res.status(404).json("❌ No se encontró ningún evento por ID");
     }
     return res.status(200).json(event);
   } catch (error) {
-    return res.status(500).json("❌ Error al buscar el evento por ID");
+    console.error('Error en el fetching:', error);
+    return res.status(500).json('❌ Error interno del servidor');
   }
 };
-
 
 
 

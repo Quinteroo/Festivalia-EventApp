@@ -17,6 +17,7 @@ export const functionFetch = async (route, params, method, objeto, token) => {
       headers: {}
     };
 
+
     if (!(objeto instanceof FormData)) {
       options.headers['Content-Type'] = 'application/json';
     }

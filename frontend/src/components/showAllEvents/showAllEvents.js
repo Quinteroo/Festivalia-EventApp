@@ -11,12 +11,10 @@ import { functionFetch } from "../../utils/functionFetch.js";
 export const showAllEvents = async () => {
 
   try {
-    // showLoading();
 
     const eventos = await functionFetch("events", "", "GET", null, null)
-
+    console.log(eventos);
     if (eventos) {
-      // hideLoading();
       pintarEventos(eventos);
       addNewEventButton();
       showAllEventsButton();
@@ -31,7 +29,7 @@ export const showAllEvents = async () => {
 };
 
 
-const pintarEventos = (eventos) => {
+const pintarEventos = async (eventos) => {
   const main = document.querySelector("main")
   main.innerHTML = "";
   main.classList.remove("background-image")
@@ -40,8 +38,8 @@ const pintarEventos = (eventos) => {
   showEventByStyle()
 
 
-
   for (const event of eventos) {
+
     const card = document.createElement("div")
     card.classList.add("card", "hover", "shadow")
 
