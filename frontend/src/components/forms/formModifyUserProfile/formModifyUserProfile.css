@@ -14,3 +14,12 @@
 .input-name{
   padding-left: 5px;
 }
+
+@media (max-width: 431px) {
+  .form-modify-user-profile{
+    width: 350px;
+    position: fixed;
+    top: 20vh;
+  }
+
+}

@@ -14,3 +14,14 @@
   width: 100%;
   color: var(--qgd-color-05);
 }
+
+
+@media (max-width: 431px) {
+  .form-select-event-by-style{
+    width: 80%;
+    padding: 3px;
+    margin-top: 9vh;
+  }
+
+}
+

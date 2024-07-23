@@ -54,3 +54,35 @@
   border-radius: 20px;
 
 }
+
+@media (max-width: 431px) {
+  .profile{
+    width: 95vw;
+  }
+  
+  .user-avatar{
+    margin-top: 15px;
+    width: 150px;
+    border: 3px solid var(--qgd-color-25);
+    border-radius: 100%;
+  }
+  .div-about-me{
+    width: 100%;
+    gap:5px;
+  }
+  
+  .about-me{
+    width: 100%;
+    padding: 50px;
+    border: 0.5px solid var(--qgd-color-15);
+    background-color: var(--qgd-color-10);
+    border-radius: 20px;
+  }
+
+  .event-div{
+    width: 140px;
+    margin: 5px;
+
+  }
+
+}
