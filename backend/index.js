@@ -39,7 +39,10 @@ app.use("*", (req, res, next) => {
 // Middleware de manejo de errores
 app.use(errorHandler);
 
-app.listen(4001, (err) => {
+
+const PORT = process.env.PORT || 4001
+
+app.listen(PORT, (err) => {
   if (err) {
     console.error("❌ Error al iniciar el servidor:", err);
     process.exit(1);
