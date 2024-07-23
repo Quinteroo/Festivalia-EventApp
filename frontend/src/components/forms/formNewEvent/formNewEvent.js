@@ -1,6 +1,6 @@
 import "./formNewEvent.css"
 import { showAllEvents } from "../../showAllEvents/showAllEvents.js"
-import { URL } from "../../../utils/url.js"
+import { functionFetch } from "../../../utils/functionFetch.js"
 
 export const formNewEvent = (elementoPadre) => {
 
@@ -64,9 +64,16 @@ export const formNewEvent = (elementoPadre) => {
 const submit = async (e) => {
   e.preventDefault()
 
-  const userID = localStorage.getItem("userID")
+  const form = document.querySelector(".form-event")
 
-  console.log(e);
+  const existingError = form.querySelector(".error");
+  if (existingError) {
+    existingError.remove();
+  }
+
+  const userID = localStorage.getItem("userID")
+  const token = localStorage.getItem("loginToken")
+
 
   const [inputTitle, inputLocation, inputDate, inputStyle, inputDescription, inputPoster] = e.target //!ARRAY destructuring!!!!!
 
@@ -80,16 +87,19 @@ const submit = async (e) => {
   formData.append("description", inputDescription.value)
   formData.append("poster", inputPoster.files[0])
 
-  const res = await fetch(`${URL}event/event/${userID}`, {
-    method: "POST",
-    body: formData,
-    headers: {
-      "authorization": `Bearer ${localStorage.getItem("loginToken")}`
+  try {
+    const response = await functionFetch("events/event", userID, "POST", formData, token)
+    if (response) {
+      showAllEvents()
     }
-  })
 
-  const response = await res.json()
-  console.log(response);
-  showAllEvents()
+  } catch (error) {
+    const errorMsg = error.message;
+    const pError = document.createElement("p");
+    pError.classList.add("error", "subtext");
+    pError.textContent = errorMsg;
+    form.append(pError);
+    console.error("Error durante el login:", errorMsg);
+  }
 
 }
