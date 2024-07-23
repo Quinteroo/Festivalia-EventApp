@@ -2,7 +2,7 @@ import "./showEventByStyle.css"
 import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
 import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js"
 import { showAllEvents } from "../showAllEvents/showAllEvents.js"
-import { URL } from "../../utils/url.js"
+import { functionFetch } from "../../utils/functionFetch.js"
 
 export const showEventByStyle = () => {
   const main = document.querySelector("main")
@@ -49,9 +49,9 @@ const pintarEventos = async (style) => {
   showAllEventsButton()
   addNewEventButton()
 
-  const res = await fetch(`${URL}event/${style}`)
 
-  const events = await res.json()
+  const events = await functionFetch("events/style", style, "GET", null, null)
+
 
 
   if (events.length === 0) {

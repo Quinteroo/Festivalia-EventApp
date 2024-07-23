@@ -44,7 +44,7 @@ export const functionFetch = async (route, params, method, objeto, token) => {
   } catch (error) {
     hideLoading()
     console.error('Error en el fetching:', error);
-    throw error; // Asegurar que el error sea lanzado
+    throw error; // esto srive para segurar que el error se ha lanzado
   }
 }
 

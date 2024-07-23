@@ -89,11 +89,6 @@ const putUser = async (req, res, next) => {
   const { userID } = req.params
   const { userName, aboutMe } = req.body
 
-  // existingName = await find({ userName })
-  // if (existingName) {
-  //   return res.status(400).json("❌ Nombre de usuario no disponible.");
-
-  // }
 
   try {
     const oldUser = await User.findById(userID)

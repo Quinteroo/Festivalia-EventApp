@@ -35,6 +35,7 @@ const postAttendee = async (req, res, next) => {
 
     const event = await Event.findOne({ title: eventName });
     if (!event) {
+      console.log("❌ Evento no encontrado");
       return res.status(404).json("❌ Evento no encontrado");
     }
 
@@ -44,6 +45,7 @@ const postAttendee = async (req, res, next) => {
 
     const existingAttendee = await Attendee.findOne({ user: user._id, confirmedEvents: event._id });
     if (existingAttendee) {
+      console.log("❌ Ya te has registrado");
       return res.status(400).json("❌ Ya te has registrado.");
     }
 
@@ -68,7 +70,7 @@ const postAttendee = async (req, res, next) => {
     return res.status(200).json(attendee);
 
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return res.status(400).json("❌ No pudiste confirmar asistencia");
   }
 };

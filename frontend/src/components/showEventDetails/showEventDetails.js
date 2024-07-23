@@ -8,9 +8,8 @@ export const showEventDetails = async (id) => {
 
 
   try {
-    console.log(id);
 
-    const evento = await functionFetch("events", "66561800ed46d2a6b3df6e8b", "GET", null, null)
+    const evento = await functionFetch("events", id, "GET", null, null)
     console.log(evento);
 
     if (evento) {

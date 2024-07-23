@@ -1,5 +1,6 @@
 import "./formNewAttendee.css"
-import { URL } from "../../../utils/url.js"
+import { functionFetch } from "../../../utils/functionFetch.js"
+import { showAllEvents } from "../../showAllEvents/showAllEvents.js"
 
 export const formNewAttendee = () => {
 
@@ -34,8 +35,10 @@ export const formNewAttendee = () => {
   const YESbutton = document.createElement("button")
   YESbutton.classList.add("yes-button", "primary-button")
   YESbutton.textContent = "YES!"
-  YESbutton.addEventListener("click", submit)
-  YESbutton.addEventListener("click", () => formAttendee.remove())
+  YESbutton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    await submit()
+  })
 
   formAttendee.append(CLOSEdiv)
   formAttendee.append(formAttendeeTitle)
@@ -49,45 +52,51 @@ export const formNewAttendee = () => {
 
 
 
-const submit = async (e) => {
-  e.preventDefault()
-  console.log(e);
+const submit = async () => {
+
+  const form = document.querySelector(".form-attendee")
+
+  const existingError = form.querySelector(".error");
+  if (existingError) {
+    existingError.remove();
+  }
 
   const userID = localStorage.getItem("userID")
-  const eventTitle = document.querySelector(".div-event-details > h3")
+  const token = localStorage.getItem("loginToken")
 
-  console.log(eventTitle);
+  const eventTitleElement = document.querySelector(".div-event-details > h3");
+  if (!eventTitleElement) {
+    console.error("No se encontró el título del evento.");
+    return;
+  }
+  const eventTitleText = eventTitleElement.textContent.trim();
+  if (!eventTitleText) {
+    console.error("El título del evento está vacío.");
+    return;
+  }
+
+
+  const objeto = JSON.stringify({
+    eventName: eventTitleText
+  })
+
+  console.log("Objeto a enviar:", objeto);
 
   try {
-    const opciones = {
-      method: "POST",
-      body: JSON.stringify({
-        eventName: eventTitle.textContent
-      }),
-      headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${localStorage.getItem("loginToken")}`
-      }
-    }
 
-
-    console.log(opciones);
-
-    const res = await fetch(`${URL}attendee/${userID}`, opciones)
-
-    if (!res.ok) {  // (status fuera de rango 200-299)
-      const errorMsg = await res.json();
-      throw new Error(errorMsg);
-    }
-
-    const resFinal = await res.json()
-
+    const resFinal = await functionFetch("attendee/newAttendee", userID, "POST", objeto, token);
     console.log(resFinal);
 
-    alert("✅ ¡Genial! ya has sido registrado en el evento! Revisa tu email con los detalles y no olvides apuntarlo en tu agenda!")
+    if (resFinal) {
+      alert("✅ ¡Genial! ya has sido registrado en el evento! Revisa tu email con los detalles y no olvides apuntarlo en tu agenda!")
+      showAllEvents()
+    }
 
   } catch (error) {
-    console.log(error);
-    alert("❌ Ya te has registrado anteriormente!")
+    const errorMsg = error.message;
+    const pError = document.createElement("p");
+    pError.classList.add("error", "subtext");
+    pError.textContent = errorMsg;
+    form.append(pError);
   }
 }

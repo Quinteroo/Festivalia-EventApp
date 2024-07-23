@@ -1,15 +1,14 @@
 import "./showUserProfile.css"
 import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEventsButton.js"
 import { modifyUserProfileButton } from "../buttons/modifyUserProfileButton/modifyUserProfileButton.js"
+import { functionFetch } from "../../utils/functionFetch.js"
 
 
 export const showUserProfile = async () => {
 
   const userID = localStorage.getItem("userID")
 
-  const res = await fetch(`http://localhost:4001/api/v1/user/${userID}`)
-
-  const user = await res.json()
+  const user = await functionFetch("user", userID, "GET", null, null)
 
   console.log(user);
 
