@@ -36,7 +36,7 @@ const pintarEvent = (evento) => {
   main.innerHTML = "";
 
   const sectionProfile = document.createElement("section")
-  sectionProfile.classList.add("section-profile")
+  sectionProfile.classList.add("section-profile", "flex-column-around")
 
   // IMAGEN EVENTO
   const divPoster = document.createElement("div")
@@ -51,7 +51,7 @@ const pintarEvent = (evento) => {
 
   // DETALLES EVENTO
   const divEventDetails = document.createElement("div")
-  divEventDetails.classList.add("div-event-details")
+  divEventDetails.classList.add("div-event-details", "flex-column-around")
   divEventDetails.innerHTML =
     `
     <h3>${evento.title}</h3>
@@ -91,7 +91,7 @@ const pintarEvent = (evento) => {
   `
 
   const ulAttendees = document.createElement("ul")
-  ulAttendees.classList.add("ul-attendees")
+  ulAttendees.classList.add("ul-attendees", "flex-row-wrap")
 
   evento.attendees.forEach(attendee => {
     const liAttendee = document.createElement("li")

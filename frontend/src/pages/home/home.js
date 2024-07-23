@@ -7,7 +7,7 @@ import { showUserAvatar } from "../../components/showUserAvatar/showUserAvatar.j
 import { logOutDiv } from "../../components/logOut/logOut.js"
 import { showAllEvents } from "../../components/showAllEvents/showAllEvents.js"
 
-export const home = () => {
+export const home = async () => {
   const divApp = document.querySelector("#app")
   divApp.innerHTML = "";
 
@@ -27,7 +27,7 @@ export const home = () => {
 
   const divUser = document.createElement("div")
   divUser.classList.add("div-user")
-  showUserAvatar(divUser)
+  await showUserAvatar(divUser)
   logOutDiv(divUser)
   header.append(divUser)
 

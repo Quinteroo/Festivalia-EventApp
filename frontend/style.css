@@ -267,4 +267,9 @@ body, #app {
   align-items: center;
 }
 
-
+.flex-column-around{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -48,11 +48,11 @@ const pintarEventos = async (eventos) => {
     poster.src = event.poster
 
     const eventTitle = document.createElement("h3")
-    eventTitle.classList.add("event-title")
+    eventTitle.classList.add("event-title", "subtitle")
     eventTitle.textContent = event.title
 
     const date = document.createElement("p")
-    date.classList.add("date")
+    date.classList.add("date", "text")
     date.textContent = event.date
 
     const moreButton = document.createElement("button")
