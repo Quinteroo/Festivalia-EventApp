@@ -5,22 +5,22 @@ const routerSocial = [
   {
     texto: "Facebook",
     href: "#",
-    image: "./src/assets/images/logo-FB.png"
+    image: "./public/assets/logo-FB.png"
   },
   {
     texto: "X",
     href: "#",
-    image: "./src/assets/images/logo-X.png"
+    image: "./public/assets/logo-X.png"
   },
   {
     texto: "Instagram",
     href: "#",
-    image: "./src/assets/images/logo-IG.png"
+    image: "./public/assets/logo-IG.png"
   },
   {
     texto: "Spotify",
     href: "#",
-    image: "./src/assets/images/logo-Spotify.png"
+    image: "./public/assets/logo-Spotify.png"
   },
 ]
 
