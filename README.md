@@ -8,7 +8,8 @@ https://festivalia-eventapp.vercel.app/
 Festivalia is a web and mobile application that allows users to easily discover events happening in their area, helping them make the best use of their time... with great music!
 
 ## PROJECT REQUIREMENTS
-### Backend (Express, JSON Web Token, Bcrypt, Mongoose, CORS, Nodemon)
+### Backend 
+- (Express, JSON Web Token, Bcrypt, Mongoose, CORS, Nodemon)
 - Create a user model that stores information such as name, email, and password (hashed).
 - Create an event model with information such as title, date, location, and description, and an array of attendees that will be user IDs.
 - Implement middleware that verifies the presence and validity of the token on protected routes. Protect routes that allow actions exclusive to authenticated users.
