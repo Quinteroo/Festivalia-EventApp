@@ -9,7 +9,7 @@ export const logOutDiv = (elementoPadre) => {
 
   const imgLogOut = document.createElement("img")
   imgLogOut.classList.add("img-log-out")
-  imgLogOut.src = "./public/assets/cerrar-sesion.png"
+  imgLogOut.src = "/assets/cerrar-sesion.png"
   imgLogOut.alt = "LogOut image"
 
   logOutDiv.append(imgLogOut)
