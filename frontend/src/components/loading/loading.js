@@ -8,7 +8,7 @@ export const showLoading = () => {
 
   const loadingGif = document.createElement("img");
   loadingGif.classList.add("loading-gif");
-  loadingGif.src = "src/assets/images/711.gif";
+  loadingGif.src = "/assets/711.gif";
 
   loadingDiv.append(loadingGif);
   main.append(loadingDiv);
