@@ -9,7 +9,7 @@ import { showLoading, hideLoading } from "../components/loading/loading.js"
 export const functionFetch = async (route, params, method, objeto, token) => {
   showLoading()
   try {
-    const url = `http://localhost:4001/api/v1/${route}/${params}`;
+    const url = `https://festivalia-back.vercel.app/${route}/${params}`;
 
     const options = {
       method,
