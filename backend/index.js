@@ -28,9 +28,9 @@ connectDB();
 app.use('/public', express.static(path.join(__dirname, '..', 'frontend', 'public')));
 
 
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/events", eventRouter);
-app.use("/api/v1/attendee", attendeeRouter);
+app.use("/user", userRouter);
+app.use("/events", eventRouter);
+app.use("/attendee", attendeeRouter);
 
 app.use("*", (req, res, next) => {
   return res.status(404).json("❌ Route not found");
