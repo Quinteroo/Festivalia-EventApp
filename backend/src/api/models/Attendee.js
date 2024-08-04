@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const attendeeSchema = new mongoose.Schema({
-  attendeeAvatar: { type: String }, //, default: "../../assets/usuario.png"
+  attendeeAvatar: { type: String, default: "/public/usuario.png" },
   attendeeName: { type: String, required: true },
   email: { type: String, required: true },
   confirmedEvents: [{ type: mongoose.Types.ObjectId, ref: "events" }],
