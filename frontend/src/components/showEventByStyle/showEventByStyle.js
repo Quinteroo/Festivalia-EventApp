@@ -3,6 +3,7 @@ import { showAllEventsButton } from "../buttons/showAllEventsButton/showAllEvent
 import { addNewEventButton } from "../buttons/addNewEventButton/addNewEventButton.js"
 import { showAllEvents } from "../showAllEvents/showAllEvents.js"
 import { functionFetch } from "../../utils/functionFetch.js"
+import { showEventDetails } from "../showEventDetails/showEventDetails.js"
 
 export const showEventByStyle = () => {
   const main = document.querySelector("main")
