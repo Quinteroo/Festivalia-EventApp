@@ -60,6 +60,11 @@ Festivalia is a web and mobile application that allows users to easily discover 
 - multer-storage-cloudinary
 - nodemailer
 - nodemon
+
+>[!TIP]
+>If you do not want to register, you can use the following username:
+>- email: bilbo@gmail.com
+>- password: Bilbo123
   
 
 ## Installation
