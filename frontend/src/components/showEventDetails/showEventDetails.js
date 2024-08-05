@@ -99,7 +99,7 @@ const pintarEvent = (evento) => {
 
     const avatarAttendee = document.createElement("img")
     avatarAttendee.classList.add("avatar-attendee")
-    avatarAttendee.src = (attendee.attendeeAvatar) ? attendee.attendeeAvatar : "/public/assets/default-avatar.png"
+    avatarAttendee.src = (attendee.attendeeAvatar) ? attendee.attendeeAvatar : "/assets/default-avatar.png"
 
     liAttendee.append(avatarAttendee)
     ulAttendees.append(liAttendee)

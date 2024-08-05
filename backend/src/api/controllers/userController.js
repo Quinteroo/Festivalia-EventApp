@@ -44,7 +44,7 @@ const register = async (req, res, next) => {
 
 
     const newUser = new User({
-      avatar: '/public/assets/default-avatar.png',
+      avatar: '/assets/default-avatar.png',
       userName,
       email,
       password,
