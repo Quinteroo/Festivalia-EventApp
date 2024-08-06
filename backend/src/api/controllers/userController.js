@@ -53,7 +53,7 @@ const register = async (req, res, next) => {
 
     const userSaved = await newUser.save();
 
-    newUserEmail(email)
+    newUserEmail(userSaved.email)
 
     return res.status(201).json(userSaved);
   } catch (error) {
