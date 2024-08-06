@@ -24,14 +24,12 @@ export const landingPage = () => {
 
 }
 
-// Función principal para manejar la carga inicial
+
 function handleInitialLoad() {
   const token = localStorage.getItem('loginToken');
   if (token) {
-    // Token existe, redirige a la página de inicio
     home();
   } else {
-    // Token no existe, muestra la página de inicio de sesión
     landingPage();
   }
 }
