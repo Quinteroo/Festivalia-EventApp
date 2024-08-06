@@ -43,6 +43,11 @@ export const formNewEvent = (elementoPadre) => {
   const today = new Date().toISOString().split('T')[0];
   inputDate.min = today;
 
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() + 1);
+  const maxDateString = maxDate.toISOString().split('T')[0];
+  inputDate.max = maxDateString;
+
   inputDescription.placeholder = "Describe el evento"
 
   inputPoster.type = "file"
