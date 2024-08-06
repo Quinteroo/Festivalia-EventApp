@@ -40,6 +40,9 @@ export const formNewEvent = (elementoPadre) => {
   `
   inputDate.type = "date"
 
+  const today = new Date().toISOString().split('T')[0];
+  inputDate.min = today;
+
   inputDescription.placeholder = "Describe el evento"
 
   inputPoster.type = "file"
