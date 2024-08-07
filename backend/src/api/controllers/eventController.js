@@ -85,8 +85,21 @@ const postEvent = async (req, res, next) => {
   }
 };
 
+const deleteEvent = async (req, res, next) => {
+  const { id } = req.params
+  try {
+    const eventDeleted = await Event.findByIdAndDelete(id)
+    return res.status(200).json({
+      mensaje: "✅ Evento eliminado con éxito",
+      eventDeleted
+    })
+
+  } catch (error) {
+    return res.status(400).json("❌ Evento no eliminado");
+  }
+
+}
 
 
 
-
-module.exports = { getEventById, getEvents, postEvent, getEventByStyle };
+module.exports = { getEventById, getEvents, postEvent, getEventByStyle, deleteEvent };
