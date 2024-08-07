@@ -7,8 +7,10 @@ import { functionFetch } from "../../utils/functionFetch.js"
 export const showUserProfile = async () => {
 
   const userID = localStorage.getItem("userID")
+  const token = localStorage.getItem("loginToken")
 
-  const user = await functionFetch("user", userID, "GET", null, null)
+
+  const user = await functionFetch("user", userID, "GET", null, token)
 
   console.log(user);
 
