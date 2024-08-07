@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const User = require("../models/User.js");
 const Event = require("../models/Event.js");
 const { deleteFile } = require("../../utils/deleteFile.js")
-
 const { generateSing } = require("../../utils/jwt.js");
 const { newUserEmail } = require("../../emails/newUserEmail.js")
 
@@ -116,5 +115,20 @@ const putUser = async (req, res, next) => {
   }
 }
 
+const deleteUser = async (req, res, next) => {
+  const { id } = req.params
+  try {
+    const userDeleted = await User.findByIdAndDelete(id)
+    deleteFile(userDeleted.avatar)
+    return res.status(200).json({
+      mensaje: "✅ Perfil de Usuario eliminado con éxito",
+      userDeletedDeleted
+    })
 
-module.exports = { getUserById, register, login, getUsers, putUser };
+  } catch (error) {
+    return res.status(400).json("❌ Error, no se pudo eliminar el perfil del usuario")
+  }
+}
+
+
+module.exports = { getUserById, register, login, getUsers, putUser, deleteUser };

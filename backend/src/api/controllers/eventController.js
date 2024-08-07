@@ -2,6 +2,7 @@ const Event = require("../models/Event.js");
 const User = require("../models/User.js")
 const Attendee = require("../models/Attendee.js");
 const { createEventEmail } = require("../../emails/createEventEmail.js")
+const { deleteFile } = require("../../utils/deleteFile.js")
 
 
 const getEventByStyle = async (req, res, next) => {
@@ -89,6 +90,7 @@ const deleteEvent = async (req, res, next) => {
   const { id } = req.params
   try {
     const eventDeleted = await Event.findByIdAndDelete(id)
+    deleteFile(eventDeleted.poster)
     return res.status(200).json({
       mensaje: "✅ Evento eliminado con éxito",
       eventDeleted
