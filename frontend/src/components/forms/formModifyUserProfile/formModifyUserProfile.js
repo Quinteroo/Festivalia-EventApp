@@ -68,6 +68,8 @@ const submit = async (e) => {
   e.preventDefault()
 
   const userID = localStorage.getItem("userID")
+  const token = localStorage.getItem("loginToken")
+
 
   const form = e.target;
   const inputName = form.querySelector(".input-name");
@@ -88,7 +90,7 @@ const submit = async (e) => {
 
   try {
 
-    const response = await functionFetch("user/profile", userID, "PUT", formData, null)
+    const response = await functionFetch("user/profile", userID, "PUT", formData, token)
     console.log(response);
 
     if (window.confirm("✅ Perfil modificado correctamente.")) {

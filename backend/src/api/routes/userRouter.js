@@ -10,7 +10,7 @@ userRouter.get('/:id', [isAuth], getUserById);
 userRouter.get('/users', [isAdmin], getUsers);
 userRouter.post('/register', register);
 userRouter.post('/login', login);
-userRouter.put('/profile/:userID', uploadAvatar.single("avatar"), putUser);
+userRouter.put('/profile/:userID', [isAuth], uploadAvatar.single("avatar"), putUser);
 userRouter.delete("delete/:id", [isAdmin], deleteUser)
 
 
