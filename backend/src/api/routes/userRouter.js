@@ -6,7 +6,7 @@ const { isAdmin } = require("../../middleware/isAdmin.js");
 const { isAuth } = require("../../middleware/isAuth.js");
 
 
-userRouter.get('/:id', getUserById);
+userRouter.get('/:id', [isAuth], getUserById);
 userRouter.get('/users', [isAdmin], getUsers);
 userRouter.post('/register', register);
 userRouter.post('/login', login);
