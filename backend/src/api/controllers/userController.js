@@ -4,6 +4,7 @@ const Event = require("../models/Event.js");
 const { deleteFile } = require("../../utils/deleteFile.js")
 const { generateSing } = require("../../utils/jwt.js");
 const { newUserEmail } = require("../../emails/newUserEmail.js")
+const { verifyJwt } = require("../../utils/jwt.js")
 
 const getUserById = async (req, res, next) => {
   try {
@@ -87,6 +88,15 @@ const login = async (req, res, next) => {
 const putUser = async (req, res, next) => {
   const { userID } = req.params
   const { userName, aboutMe } = req.body
+
+  const token = req.headers.authorization;
+
+  const parsedToken = token.replace("Bearer ", "");
+  const { id } = verifyJwt(parsedToken);
+
+  if (!userID === id) {
+    return res.status(400).json("❌ No estás autorizado a modificar el perfil.")
+  }
 
 
   try {
