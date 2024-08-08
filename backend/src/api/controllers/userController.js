@@ -101,6 +101,9 @@ const putUser = async (req, res, next) => {
 
   try {
     const oldUser = await User.findById(userID)
+    if (!oldUser) {
+      return res.status(404).json("❌ Usuario no encontrado.");
+    }
 
     const newUser = new User({
       userName: userName || oldUser.userName,
